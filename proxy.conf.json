@@ -1,0 +1,20 @@
+{
+  "/api":{
+      "target": "http://localhost:8080",
+      "sercure":false,
+      "changeOrigin":true
+  },
+
+  "/UAT":{
+    "target": "http://122.248.120.252:60145",
+    "sercure":false
+   },
+
+   "/payment-api": {
+    "target": "https://122.248.120.187:4443",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "headers": {"Authen-Token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY"}
+    }  
+}
