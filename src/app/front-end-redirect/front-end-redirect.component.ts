@@ -47,6 +47,7 @@ export class FrontEndRedirectComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   checkStatus() {
     if (this.respCode == "00") {
       this.router.navigate(['success']);

@@ -2,7 +2,6 @@
     <div class="cotainer-fluid">
         <div class="navbar-header" style="width:100%;height: 400px;">
             <div class="row">
-
                 <div class="col-md-1">
                     <img src="assets/img/images.png" width="120" height="110">
                 </div>
@@ -44,35 +43,41 @@
 
             </div>
 
+
             <div class="grid-container1">
                 <div class="grid-item-header">
                     <h4 style="text-align: center;">အချက်အလက်ပြန်စစ်ရန်နှင့် ငွေပေးချေရန်</h4>
                 </div>
             </div>
+            <div class="grid-container2">
+                <div class="grid-item">အမည်</div>
+                <div class="grid-item">{{ userName}}</div>
 
-            <div class="grid-item">ဖုန်းနံပါတ်</div>
-            <div class="grid-item">{{ phoneNo}}</div>
+                <div class="grid-item">ဖုန်းနံပါတ်</div>
+                <div class="grid-item">{{ phoneNo}}</div>
 
-            <div class="grid-item">အီးမေးလ်</div>
-            <div class="grid-item">{{ email}}</div>
+                <div class="grid-item">အီးမေးလ်</div>
+                <div class="grid-item">{{ email}}</div>
 
-            <div class="grid-item">အကြောင်းအရာ</div>
-            <div class="grid-item">{{ description}}</div>
+                <div class="grid-item">အကြောင်းအရာ</div>
+                <div class="grid-item">{{ description}}</div>
 
+            </div>
+
+            <h3 style="margin-left: 120px;margin-top: 60px;">ပေးချေလိုသည့် Payment အမျိုးအစားကို ရွေးချယ်ပါ။</h3>
+            <div class="row" style="margin-left: 110px;margin-top: 40px;">
+                <img src="assets/img/visa.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()"
+                    class="hover-shadow cursor">
+                <img src="assets/img/master_logo.png" style="width:230px;height:160px;margin-right: 50px;"
+                    (click)="visa()" class="hover-shadow cursor">
+                <img src="assets/img/mpu.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="payment()"
+                    class="hover-shadow cursor">
+                <img src="assets/img/cbpay.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="cbPay()"
+                    class="hover-shadow cursor">
+
+            </div>
+            <button style="margin-left: 570px;margin-top: 30px;" class="btn btn-primary" (click)="report()">Transaction
+                Report</button>
         </div>
-
-        <h3 style="margin-left: 120px;margin-top: 60px;">ပေးချေလိုသည့် Payment အမျိုးအစားကို ရွေးချယ်ပါ။</h3>
-        <div class="row" style="margin-left: 110px;margin-top: 40px;">
-            <img src="assets/img/visa.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()"
-                class="hover-shadow cursor">
-            <img src="assets/img/master_logo.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()"
-                class="hover-shadow cursor">
-            <img src="assets/img/mpu.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="payment()"
-                class="hover-shadow cursor">
-            <img src="assets/img/cbpay.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="cbPay()"
-                class="hover-shadow cursor">
-
-        </div>
-        <button style="margin-left: 570px;margin-top: 30px;" class="btn btn-primary" (click)="report()">Transaction Report</button>
     </div>
 </nav>

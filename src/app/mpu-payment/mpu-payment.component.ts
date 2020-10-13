@@ -30,8 +30,9 @@ export class MPUPaymentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitForm(){ 
-    const url: string = "https://122.248.120.252:60145/UAT/Payment/Payment/pay";
+  submitForm() {
+   // const url: string = "https://122.248.120.252:60145/UAT/Payment/Payment/pay";
+    const url: string = "/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
     this.payment.amount = "000000030000";

@@ -3,7 +3,6 @@ import {Subject}    from 'rxjs';
 declare var jQuery: any;
 @Injectable()
 export class RpIntercomService {
-    id : string = "";
     sessionid: string = "";  
     orderid: string = "24";
     version: string = ""; 
