@@ -1,0 +1,24 @@
+
+<app-header></app-header>
+
+<div>
+  <div style="width:100%;margin-left: 600px;">  
+   <h4>Please scan here to pay via CB Pay</h4>
+     <div style="width:250px;height:280px;margin-left: 13px;margin-top: 30px;">
+         <ngx-qrcode
+        [elementType]="elementType"
+        [errorCorrectionLevel]="correctionLevel"
+        [value]="merDqrCode"
+         cssClass="bshadow"></ngx-qrcode>
+     </div>
+
+     <h4 style="margin-top: 40px;" (click)="checkStatus()">ငွေပေးချေမှုပြီးမှသာ ဤနေရာကိုနှိပ်ပါ။</h4>
+     <h4 style="margin-top: 30px;" (click)="checkStatus()">Click here after your payment is successful.</h4>
+     <button style="margin-left: 20px;margin-top: 30px;width: 80px;" class="btn btn-primary" (click)="cancel()">Cancel</button>
+ </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,16 @@
+<div *ngIf="transStatus == 'P' ">
+    <app-header></app-header>
+     <h2 style="margin-left: 550px;">Your Payment is Pending.</h2>
+     <h4 style="margin-top: 30px;margin-left: 620px;" (click)="reload()">Click here to reload!</h4>
+   </div>
+ <div *ngIf="transStatus == 'S' ">
+   <app-success-page></app-success-page>
+ </div>
+ <div *ngIf="transStatus == 'E' ">
+   <app-header></app-header>
+   <h2 style="margin-left: 550px;">Your Payment has been expired.</h2>
+   <h4 style="margin-top: 30px;margin-left: 670px;" (click)="nextOne()">Please Click here!</h4>
+ </div>
+<!-- <div *ngIf="showLoadingIndicator == true" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> -->
+
+<div style="margin-left: 650px;" *ngIf="showLoadingIndicator == true" class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
