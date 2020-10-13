@@ -1,20 +1,33 @@
 {
-  "/api":{
+    "/UAT": {
+      "target": "https://122.248.120.252:60145",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+      }
+    },
+    "/payment-api": {
+      "target": "https://122.248.120.187:4443",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "headers": {
+        "Authen-Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY"
+      }
+    },
+    "/api": {
+      "target": "https://cbbank.gateway.mastercard.com",
+      "sercure": false,
+      "changeOrigin": true,
+      "headers": {
+        "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
+      }
+    },
+    "/operation": {
       "target": "http://localhost:8080",
-      "sercure":false,
-      "changeOrigin":true
-  },
-
-  "/UAT":{
-    "target": "http://122.248.120.252:60145",
-    "sercure":false
-   },
-
-   "/payment-api": {
-    "target": "https://122.248.120.187:4443",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true,
-    "headers": {"Authen-Token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY"}
-    }  
-}
+      "sercure": false,
+      "changeOrigin": true
+    }
+  }
