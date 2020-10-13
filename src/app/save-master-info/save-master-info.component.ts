@@ -26,8 +26,11 @@ export class SaveMasterInfoComponent implements OnInit {
 
   getOrderId() {
     console.log(" Order ID before saving: " + this.ics.orderid);
-    const url: string = "/api/rest/version/57/merchant/CB0000000342/order/" +  this.ics.orderid;
-     this.http.request('get', url).subscribe(
+    const url: string = "https://cbbank.gateway.mastercard.com/api/rest/version/57/merchant/CB0000000342/order/" +  this.ics.orderid;
+    const headers =  {
+      "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
+    }
+    this.http.request('get', url, {headers: headers}).subscribe(
       (data: any) => {
         this.response = data;
         this.json = {
@@ -76,7 +79,7 @@ export class SaveMasterInfoComponent implements OnInit {
 
   save(json: any) {
     console.log("json: ", this.json);
-    const url: string = "/operation/saveVisa";
+    const url: string = "http://localhost:8081/operation/saveVisa";
     this.http.request('post', url, { body: json }).subscribe(
       (data: any) => {
         console.log("response: ", data);

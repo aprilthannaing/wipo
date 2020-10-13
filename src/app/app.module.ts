@@ -25,21 +25,22 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { SaveMasterInfoComponent } from './save-master-info/save-master-info.component';
 import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
-import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
+  //{ path: '', component: FailPageComponent },
   { path: '', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
   { path: 'mpu-payment', component: MPUPaymentComponent },
   { path: 'success', component: SuccessPageComponent },
   { path: 'fail', component: FailPageComponent },
   { path: 'confirm', component: ConfirmComponent },
+  {path: 'confirm/:id', component : ConfirmComponent}, 
   { path: 'qrcode', component: QrPaymentComponent },
   { path: 'visa', component: VisaMasterComponent },
   { path: 'mpsg', component: MpsgPaymentComponent },
   { path: 'checkStatus', component: QrstatusComponent },
   { path: 'saveMaster', component: SaveMasterInfoComponent },
   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
-  { path: 'report', component: ReportComponent }
 ];
 
 
@@ -56,7 +57,7 @@ const routes: Routes = [
     VisaMasterComponent, 
     QrstatusComponent, 
     SaveMasterInfoComponent, 
-    FrontEndRedirectComponent, ReportComponent,
+    FrontEndRedirectComponent,
   ],
   
   imports: [ 
@@ -68,7 +69,7 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(routes,{useHash: false}),
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [ 
     RpIntercomService

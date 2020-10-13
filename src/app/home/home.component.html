@@ -1,83 +1,64 @@
+
 <nav class="navbar navbar-default" style="height: 120px;background-color: #1fb0fb;">
     <div class="cotainer-fluid">
         <div class="navbar-header" style="width:100%;height: 400px;">
             <div class="row">
-                <div class="col-md-1">
-                    <img src="assets/img/images.png" width="120" height="110">
-                </div>
-                <div class="col-md-7" style="margin-top: 22px;margin-left: 35px;">
-                    <span style="font-size: x-large;font-family:sans-serif;color:lavender;">DEPARTMENT OF INTELLECTUAL
-                        PROPERTY</span>
-                    <br>
-                    <span style="font-family:cursive;color:lavender;"> MINISTRY OF COMMERCE </span>
-                </div>
-            </div>
-
-            <div style="background-color: cadetblue; height: 40px;">
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">WORKBENCH</a>
-                </div>
-
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">SUBMISSION<span class="caret" style="margin-left: 10px;"></span></a>
-                    <div class="dropdown-content">
-                        <a href="#">SUBMISSION</a>
-                        <a href="#">TRADEMARK</a>
-                        <a href="#">POST FILING</a>
+                   <div class="col-md-1">
+                       <img src="assets/img/images.png" width="120" height="110">
+                   </div>
+                    <div class="col-md-7" style="margin-top: 22px;margin-left: 35px;" >                                    
+                             <span style="font-size: x-large;font-family:sans-serif;color:lavender;">DEPARTMENT OF INTELLECTUAL PROPERTY</span>
+                             <br>
+                            <span style="font-family:cursive;color:lavender;"> MINISTRY OF COMMERCE </span>
                     </div>
+             </div>
+          
+             <div style="background-color: cadetblue; height: 40px;">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">WORKBENCH</a>                     
+                </div>   
+               
+                <div class="dropdown">
+                 <a href="#" class="dropbtn">SUBMISSION<span class="caret" style="margin-left: 10px;"></span></a>
+                   <div class="dropdown-content">
+                       <a href="#">SUBMISSION</a>
+                       <a href="#">TRADEMARK</a>
+                       <a href="#">POST FILING</a>
+                   </div>
                 </div>
                 <div class="dropdown">
                     <a href="#" class="dropbtn">MY PROFILE<span style="margin-left: 10px;" class="caret"></span></a>
-                    <div class="dropdown-content">
-                        <a href="#">MY PROFILE</a>
-                        <a href="#">USER PERFERENCES</a>
-                        <a href="#">EDIT PROFILE</a>
-                        <a href="#">USER ASSOCIATION</a>
-                        <a href="#">CHANGE PASSWORD</a>
-                    </div>
+                      <div class="dropdown-content">
+                          <a href="#">MY PROFILE</a>
+                          <a href="#">USER PERFERENCES</a>
+                          <a href="#">EDIT PROFILE</a>
+                          <a href="#">USER ASSOCIATION</a>
+                          <a href="#">CHANGE PASSWORD</a>
+                      </div>
                 </div>
 
                 <div class="dropdown">
-                    <a href="#" class="dropbtn">NOTIFICATIONS</a>
-                </div>
-
+                    <a href="#" class="dropbtn">NOTIFICATIONS</a>                     
+                </div>        
+                   
             </div>
 
-
-            <div class="grid-container1">
-                <div class="grid-item-header">
-                    <h4 style="text-align: center;">အချက်အလက်ပြန်စစ်ရန်နှင့် ငွေပေးချေရန်</h4>
-                </div>
-            </div>
-            <div class="grid-container2">
-                <div class="grid-item">အမည်</div>
-                <div class="grid-item">{{ userName}}</div>
-
-                <div class="grid-item">ဖုန်းနံပါတ်</div>
-                <div class="grid-item">{{ phoneNo}}</div>
-
-                <div class="grid-item">အီးမေးလ်</div>
-                <div class="grid-item">{{ email}}</div>
-
-                <div class="grid-item">အကြောင်းအရာ</div>
-                <div class="grid-item">{{ description}}</div>
+           <h3 style="margin-left: 120px;margin-top: 100px;">ပေးချေလိုသည့် Payment အမျိုးအစားကို ရွေးချယ်ပါ။</h3>
+           <div class="row" style="margin-left: 110px;margin-top: 40px;" >
+              <img src="assets/img/visa.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()" class="hover-shadow cursor">
+              <img src="assets/img/master_logo.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()" class="hover-shadow cursor">
+              <img src="assets/img/mpu.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="payment()" class="hover-shadow cursor">
+              <img src="assets/img/cbpay.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="cbPay()" class="hover-shadow cursor">
 
             </div>
-
-            <h3 style="margin-left: 120px;margin-top: 60px;">ပေးချေလိုသည့် Payment အမျိုးအစားကို ရွေးချယ်ပါ။</h3>
-            <div class="row" style="margin-left: 110px;margin-top: 40px;">
-                <img src="assets/img/visa.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()"
-                    class="hover-shadow cursor">
-                <img src="assets/img/master_logo.png" style="width:230px;height:160px;margin-right: 50px;"
-                    (click)="visa()" class="hover-shadow cursor">
-                <img src="assets/img/mpu.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="payment()"
-                    class="hover-shadow cursor">
-                <img src="assets/img/cbpay.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="cbPay()"
-                    class="hover-shadow cursor">
-
-            </div>
-            <button style="margin-left: 570px;margin-top: 30px;" class="btn btn-primary" (click)="report()">Transaction
-                Report</button>
+            <button style="margin-left: 20px;margin-top: 30px;width: 100px;" class="btn btn-primary" (click)="saveMaster()">Save Master</button>
         </div>
     </div>
 </nav>
+
+
+
+
+
+
+
