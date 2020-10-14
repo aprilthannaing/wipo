@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute,ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { RpIntercomService } from '../framework/rp-intercom.service';
 
 @Component({
   selector: 'app-home',
@@ -10,21 +9,20 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
   styleUrls: ['./home.component.styl']
 })
 export class HomeComponent implements OnInit {
-  id = "";
+
+  userName = "Htet Het San";
+  email = "htethtetsan57@gmail.com";
+  phoneNo = "09784535453";
+  description = "ဟိုတယ်ဆိုင်ရာဝန်ဆောင်မှု(အခြေခံ)သင်တန်းများ";
+
   constructor(
     private router: Router,
-    private route : ActivatedRoute,
     private location: Location,
     private http : HttpClient,
-    private ics : RpIntercomService
     ) {   
    }
 
-  ngOnInit(): void { 
-    this.route.paramMap.subscribe((params : ParamMap)=> {  
-      if(params.get('id') != null)
-        this.ics.id = params.get('id');
-    })  
+  ngOnInit(): void {   
   }
 
   payment(){
@@ -32,7 +30,7 @@ export class HomeComponent implements OnInit {
   } 
 
   cbPay(){
-    this.router.navigate(['confirm',this.ics.id]);
+    this.router.navigate(['confirm']);
   } 
 
   success(){
@@ -47,7 +45,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['visa']);
   }
 
-  saveMaster () {
-    this.router.navigate(['saveMaster']);
+  report () {
+    window.open("http://localhost:8081/report/visa.xlsx", "_blank");
   }
 }
