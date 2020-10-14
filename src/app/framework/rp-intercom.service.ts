@@ -3,6 +3,9 @@ import {Subject}    from 'rxjs';
 declare var jQuery: any;
 @Injectable()
 export class RpIntercomService {
+    private _rpbeanSource = new Subject<any>();
+    rpbean$ = this._rpbeanSource.asObservable();
+    _title = "WIPO Filling";
     id: string = "";
     sessionid: string = "";  
     orderid: string = "28";
@@ -12,10 +15,4 @@ export class RpIntercomService {
     merDqrCode: string = "";    
     _apiurl = "http://localhost:8082";
     _cbpayurl = "https://122.248.120.187:4443";
-
-    private _rpbeanSource = new Subject<any>();
-    sendBean(x: any) {
-        this._mybean = x;
-        this._rpbeanSource.next(x);
-    }
 }

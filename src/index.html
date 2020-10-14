@@ -7,6 +7,8 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="css/styles.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="https://ap-gateway.mastercard.com/checkout/version/52/checkout.js"
       data-error="http://localhost:4200/#/fail"
       data-cancel="http://localhost:4200/"
@@ -14,7 +16,9 @@
       data-timeout="http://localhost:4200/#/fail"></script>        
 </head>
 <body>
-  <script>if(window['global'] === undefined){ window['global'] = window }</script>
+  <!-- <script>if(window['global'] === undefined){ window['global'] = window }</script> -->
   <app-root></app-root>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>  
 </body>
 </html>

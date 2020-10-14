@@ -16,7 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { QrPaymentComponent } from './qr-payment/qr-payment.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { VisaMasterComponent } from './visa-master/visa-master.component';
 import { RpIntercomService } from './framework/rp-intercom.service';
 import { MpsgPaymentComponent } from './mpsg-payment/mpsg-payment.component';
@@ -69,7 +69,7 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(routes,{useHash: false}),
-    FontAwesomeModule,
+    //FontAwesomeModule,
   ],
   providers: [ 
     RpIntercomService
