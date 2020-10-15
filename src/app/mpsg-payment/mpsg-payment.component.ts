@@ -35,7 +35,7 @@ export class MpsgPaymentComponent implements OnInit {
     interaction: {
       operation: "PURCHASE",
       merchant      : {
-        name   : 'MOHT Myanmar',
+        name   : 'WIPO',
         logo   : ''
       },
       locale        : 'en_US',

@@ -12,8 +12,8 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 })
 
 export class VisaMasterComponent implements OnInit {
-  merchantId = "CB0000000342";
-  apiPassword = "a3102e136bdc8eb7d986804dfa533e02";
+  merchantId = "CB0000000355";
+  apiPassword = "50f45faae07ac50972d8414ba0a6bb4d";
   amount = "10.00";
   returnUrl = "http://localhost:8080/wipo/saveMaster";
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';

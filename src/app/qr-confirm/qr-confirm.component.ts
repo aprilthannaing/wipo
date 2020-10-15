@@ -7,10 +7,11 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 import { tap, map} from 'rxjs/operators'
 @Component({
   selector: 'app-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.styl']
+  templateUrl: './qr-confirm.component.html',
+  styleUrls: ['./qr-confirm.component.styl']
 })
 export class ConfirmComponent implements OnInit {
+  loading_ = false;
   id = "";
   request = {"merId":"", "transRef":""};  
   resObj:any = this.Objfun();
@@ -37,7 +38,7 @@ export class ConfirmComponent implements OnInit {
     this.checkUser(); 
   }
   checkUser(){
-    const url: string = this.ics._apiurl + "/data/check"; 
+    const url: string = "/data/check"; 
     const json = {
       id : this.id
     }
@@ -57,6 +58,7 @@ export class ConfirmComponent implements OnInit {
     }
 
     generate(){
+      this.loading_ = true;
       const url: string =  "/payment-api/v1/qr/generate-transaction.service"; 
         this.resObj.reqId =  "2d21a5715c034efb7e0aa383b885fc7a";
         this.resObj.merId = "581500000000017";
@@ -72,6 +74,7 @@ export class ConfirmComponent implements OnInit {
         headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
         this.http.post(url,body,{headers:headers}).subscribe((data:any)=> {
           if(data.code == '0000'){
+            this.loading_ = false;
             this.resObj.merDqrCode = data.merDqrCode;
             this.ics.transRef = data.transRef;
             this.ics.merDqrCode = data.merDqrCode;
@@ -95,7 +98,7 @@ export class ConfirmComponent implements OnInit {
       this.resObj.refNo= obj.refNo;
       this.resObj.transExpiredTime= obj.transExpiredTime;
       this.resObj.transRef= obj.transRef;
-      const url: string = this.ics._apiurl+"/operation/saveCBPaytransaction";
+      const url: string = "/operation/saveCBPaytransaction";
       this.http.post(url, JSON.stringify(this.resObj), {headers: headers}).subscribe(
         (data:any)=> {
          console.log("Save_____" + data);

@@ -1,27 +1,16 @@
- 
-    <div class="navbar-header" style="width:100%;height: 100px; background-color:#1fb0fb;">
-      <div class="row">
-             <div class="col-md-1">
-                 <img src="assets/img/images.png" width="120" height="110">
-             </div>
-              <div class="col-md-7" style="margin-top: 22px;margin-left: 35px;" >                                    
-                       <span style="font-size: x-large;font-family:sans-serif;color:lavender;">DEPARTMENT OF INTELLECTUAL PROPERTY</span>
-                       <br>
-                      <span style="font-family:cursive;color:lavender;"> MINISTRY OF COMMERCE </span>
-              </div>
-       </div>            
-  </div>
+<app-header></app-header>
+<div class="container">
+  <img src="assets/img/mpu.jpg" style="margin-left: 350px;" width="200" height="180">
 
-<img src="assets/img/mpu.jpg" style="margin-left: 350px;" width="200" height="180">
-
-<form style="margin-left: 300px;" (ngSubmit)="submitForm()">
-  <div class="input-group" style="margin-bottom: 30px;">
-    <span class="input-group-addon">Invoice No :</span>
-    <input style="width: 200px;" id="email" type="text" class="form-control" name="ino" [(ngModel)]="payment.invoiceNo">
-  </div>
-  
-  <div class="form-group"  style="margin-left: 70px;">
-        <button type="submit" class="btn btn-primary" style="width: 70px;">Save</button>
-        <button style="margin-left: 20px;width: 70px;" type="button" class="btn btn-primary" (click)="cancel();">Cancel</button>
-  </div> 
-</form> 
+  <form style="margin-left: 300px;" (ngSubmit)="submitForm()">
+    <div class="input-group" style="margin-bottom: 30px;">
+      <span class="input-group-addon">Invoice No :</span>
+      <input style="width: 200px;" id="email" type="text" class="form-control" name="ino" [(ngModel)]="payment.invoiceNo">
+    </div>
+    
+    <div class="form-group"  style="margin-left: 70px;">
+          <button type="submit" class="btn btn-primary" style="width: 70px;">Save</button>
+          <button style="margin-left: 20px;width: 70px;" type="button" class="btn btn-primary" (click)="cancel();">Cancel</button>
+    </div>    
+  </form> 
+</div>

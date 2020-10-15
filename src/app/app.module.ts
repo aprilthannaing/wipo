@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { SuccessPageComponent } from './success-page/success-page.component';
 import { FailPageComponent } from './fail-page/fail-page.component';
 import { HeaderComponent } from './header/header.component';
-import { ConfirmComponent } from './confirm/confirm.component';
+import { ConfirmComponent } from './qr-confirm/qr-confirm.component';
 import { QrPaymentComponent } from './qr-payment/qr-payment.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +29,7 @@ import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redire
 const routes: Routes = [
   //{ path: '', component: FailPageComponent },
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'mpu-payment', component: MPUPaymentComponent },
   { path: 'success', component: SuccessPageComponent },

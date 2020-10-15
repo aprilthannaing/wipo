@@ -31,7 +31,7 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   submitForm() {
-    const url: string = "https://122.248.120.252:60145/UAT/Payment/Payment/pay";
+    const url: string = "/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
     this.payment.amount = "000000030000";
@@ -43,7 +43,7 @@ export class MPUPaymentComponent implements OnInit {
     const json: any = this.payment;
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    this.http.post(url, json, { headers: headers, responseType: 'text' as 'json', observe: 'response' }).subscribe(
+    this.http.post(url, json, { responseType: 'text' as 'json', observe: 'response' }).subscribe(
       data => {
         window.location.href = data.url;
       },
@@ -64,9 +64,8 @@ export class MPUPaymentComponent implements OnInit {
 
     const key = "7M8N3SLQ8QILSN6DOZIN1NBOVWMMGIVA";
     var crypto = require("crypto");
-    return crypto.createHmac('sha1', key)
-      .update(paramStr)
-      .digest('hex') + "";
+    var hashValue = crypto.createHmac('sha1', key).update(paramStr).digest('hex') + "";
+    return hashValue;
   }
 
   cancel() {
