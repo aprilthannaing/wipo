@@ -15,7 +15,7 @@ export class FailPageComponent implements OnInit {
   constructor( private router : Router,private ics : RpIntercomService) {
     router.events.subscribe((event: NavigationStart) => {
       if (event.navigationTrigger === 'popstate') {
-        this.router.navigate(['home',this.ics.id]);
+        this.router.navigate(['home',this.ics.userid]);
       }
     });
   } 

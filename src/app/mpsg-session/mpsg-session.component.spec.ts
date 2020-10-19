@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VisaMasterComponent } from './visa-master.component';
+import { MpsgSessionComponent } from './mpsg-session.component';
 
 describe('VisaMasterComponent', () => {
-  let component: VisaMasterComponent;
-  let fixture: ComponentFixture<VisaMasterComponent>;
+  let component: MpsgSessionComponent;
+  let fixture: ComponentFixture<MpsgSessionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VisaMasterComponent ]
+      declarations: [ MpsgSessionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VisaMasterComponent);
+    fixture = TestBed.createComponent(MpsgSessionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

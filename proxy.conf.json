@@ -26,12 +26,12 @@
       }
     },
     "/operation": {
-      "target": "http://localhost:8082",
+      "target": "http://localhost:8080",
       "sercure": false,
       "changeOrigin": true
     },
     "/data": {
-      "target": "http://localhost:8082",
+      "target": "http://localhost:8080",
       "sercure": false,
       "changeOrigin": true
     }

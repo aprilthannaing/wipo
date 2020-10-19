@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RpIntercomService } from './framework/rp-intercom.service';
 import { Title } from '@angular/platform-browser';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 declare var jQuery: any;
 
 interface DialogData {
@@ -13,5 +14,4 @@ interface DialogData {
   styleUrls: ['./app.component.styl']
 })
 export class AppComponent {
-
 }

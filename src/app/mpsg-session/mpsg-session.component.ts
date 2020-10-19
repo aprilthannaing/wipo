@@ -6,12 +6,12 @@ import { DOCUMENT } from '@angular/common';
 import { RpIntercomService } from '../framework/rp-intercom.service';
 
 @Component({
-  selector: 'app-visa-master',
-  templateUrl: './visa-master.component.html',
-  styleUrls: ['./visa-master.component.styl']
+  selector: 'app-mpsg-session',
+  templateUrl: './mpsg-session.component.html',
+  styleUrls: ['./mpsg-session.component.styl']
 })
 
-export class VisaMasterComponent implements OnInit {
+export class MpsgSessionComponent implements OnInit {
   merchantId = "CB0000000355";
   apiPassword = "50f45faae07ac50972d8414ba0a6bb4d";
   amount = "10.00";

@@ -17,14 +17,14 @@ import { ConfirmComponent } from './qr-confirm/qr-confirm.component';
 import { QrPaymentComponent } from './qr-payment/qr-payment.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { VisaMasterComponent } from './visa-master/visa-master.component';
+import { MpsgSessionComponent } from './mpsg-session/mpsg-session.component';
 import { RpIntercomService } from './framework/rp-intercom.service';
 import { MpsgPaymentComponent } from './mpsg-payment/mpsg-payment.component';
 import { QrstatusComponent } from './qrstatus/qrstatus.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
-import { SaveMasterInfoComponent } from './save-master-info/save-master-info.component';
 import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
+import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent';
 
 const routes: Routes = [
   //{ path: '', component: FailPageComponent },
@@ -37,10 +37,10 @@ const routes: Routes = [
   { path: 'confirm', component: ConfirmComponent },
   {path: 'confirm/:id', component : ConfirmComponent}, 
   { path: 'qrcode', component: QrPaymentComponent },
-  { path: 'visa', component: VisaMasterComponent },
+  { path: 'visa', component: MpsgSessionComponent },
   { path: 'mpsg', component: MpsgPaymentComponent },
   { path: 'checkStatus', component: QrstatusComponent },
-  { path: 'saveMaster', component: SaveMasterInfoComponent },
+  { path: 'saveMaster', component: MpsgSaveInfoComponent },
   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
 ];
 
@@ -55,9 +55,9 @@ const routes: Routes = [
     HeaderComponent,
     ConfirmComponent, 
     QrPaymentComponent, 
-    VisaMasterComponent, 
+    MpsgSessionComponent, 
     QrstatusComponent, 
-    SaveMasterInfoComponent, 
+    MpsgSaveInfoComponent, 
     FrontEndRedirectComponent,
   ],
   

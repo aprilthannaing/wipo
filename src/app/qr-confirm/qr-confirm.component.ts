@@ -31,11 +31,11 @@ export class ConfirmComponent implements OnInit {
   }
   sub: any;
   ngOnInit(): void {   
-    this.route.paramMap.subscribe((params : ParamMap)=> {  
-      this.id = params.get('id');
+    // this.route.paramMap.subscribe((params : ParamMap)=> {  
+    //   this.id = params.get('id');
      
-    })
-    this.checkUser(); 
+    // })
+   // this.checkUser(); 
   }
   checkUser(){
     const url: string = "/data/check"; 
@@ -54,7 +54,7 @@ export class ConfirmComponent implements OnInit {
   }
   
     cancel(){
-      this.router.navigate(['home',this.ics.id]);
+      this.router.navigate(['home',this.ics.userid]);
     }
 
     generate(){
@@ -71,7 +71,7 @@ export class ConfirmComponent implements OnInit {
         const body = JSON.stringify(this.resObj);
         let headers = new HttpHeaders();
         headers = headers.append('Content-Type', 'application/json');
-        headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
+       // headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
         this.http.post(url,body,{headers:headers}).subscribe((data:any)=> {
           if(data.code == '0000'){
             this.loading_ = false;

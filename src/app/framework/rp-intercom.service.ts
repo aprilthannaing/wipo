@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Subject}    from 'rxjs';
-declare var jQuery: any;
+declare var CryptoJS: any;
 @Injectable()
 export class RpIntercomService {
     private _rpbeanSource = new Subject<any>();
     rpbean$ = this._rpbeanSource.asObservable();
     _title = "WIPO Filling";
-    id: string = "";
-    sessionid: string = "";  
+    sessionid: string = "";
+    userid: string = "";  
     orderid: string = "28";
     version: string = ""; 
     private _mybean: any;
@@ -15,4 +15,8 @@ export class RpIntercomService {
     merDqrCode: string = "";    
     _apiurl = "http://localhost:8082";
     _cbpayurl = "https://122.248.120.187:4443";
+
+    getIvs() {
+        return CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+      }
 }

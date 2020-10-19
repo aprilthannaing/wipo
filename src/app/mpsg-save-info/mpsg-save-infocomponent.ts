@@ -5,11 +5,11 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-save-master-info',
-  templateUrl: './save-master-info.component.html',
-  styleUrls: ['./save-master-info.component.styl']
+  selector: 'app-mpsg-save-info',
+  templateUrl: './mpsg-save-info.component.html',
+  styleUrls: ['./mpsg-save-info.component.styl']
 })
-export class SaveMasterInfoComponent implements OnInit {
+export class MpsgSaveInfoComponent implements OnInit {
   json: any = {};
   response: any;
   constructor(

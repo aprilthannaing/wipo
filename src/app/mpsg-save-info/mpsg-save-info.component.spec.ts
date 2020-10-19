@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MpsgSaveInfoComponent } from './mpsg-save-infocomponent';
 
-import { SaveMasterInfoComponent } from './save-master-info.component';
-
-describe('SaveMasterInfoComponent', () => {
-  let component: SaveMasterInfoComponent;
-  let fixture: ComponentFixture<SaveMasterInfoComponent>;
+describe('MpsgSaveInfoComponent', () => {
+  let component: MpsgSaveInfoComponent;
+  let fixture: ComponentFixture<MpsgSaveInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SaveMasterInfoComponent ]
+      declarations: [ MpsgSaveInfoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SaveMasterInfoComponent);
+    fixture = TestBed.createComponent(MpsgSaveInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
