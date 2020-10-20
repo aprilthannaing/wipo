@@ -52,16 +52,19 @@
             </div>
             <div class="grid-container2">
                 <div class="grid-item">အမည်</div>
-                <div class="grid-item">{{ userName}}</div>
+                <div class="grid-item">{{ userObj.name}}</div>
 
                 <div class="grid-item">ဖုန်းနံပါတ်</div>
-                <div class="grid-item">{{ phoneNo}}</div>
+                <div class="grid-item">{{userObj.phoneNo}}</div>
 
                 <div class="grid-item">အီးမေးလ်</div>
-                <div class="grid-item">{{ email}}</div>
+                <div class="grid-item">{{userObj.email}}</div>
 
                 <div class="grid-item">အကြောင်းအရာ</div>
-                <div class="grid-item">{{ description}}</div>
+                <div class="grid-item">{{userObj.paymentdescription}}</div>
+
+                <div class="grid-item">ကျသင့်ငွေ</div>
+                <div class="grid-item"><span style="font-weight:bold">{{userObj.amount}}</span> &nbsp;{{userObj.currency}}</div>
 
             </div>
 

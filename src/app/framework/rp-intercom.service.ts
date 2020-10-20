@@ -15,8 +15,4 @@ export class RpIntercomService {
     merDqrCode: string = "";    
     _apiurl = "http://localhost:8082";
     _cbpayurl = "https://122.248.120.187:4443";
-
-    getIvs() {
-        return CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
-      }
 }

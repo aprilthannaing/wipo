@@ -15,9 +15,10 @@ export class HomeComponent implements OnInit {
   email = "htethtetsan57@gmail.com";
   phoneNo = "09784535453";
   description = "ဟိုတယ်ဆိုင်ရာဝန်ဆောင်မှု(အခြေခံ)သင်တန်းများ";
-  userObj = {
-    "name":"","email":"","phoneNo":"","paymentdescription":"","amount":"","currency":"","paymentId":""
-  }
+  userObj : any;
+  // userObj = {
+  //   "name":"","email":"","phoneNo":"","paymentdescription":"","amount":"","currency":"","paymentId":""
+  // }
 
   constructor(
     private router: Router,
@@ -30,9 +31,8 @@ export class HomeComponent implements OnInit {
 
    ngOnInit(): void {   
     this.route.paramMap.subscribe((params : ParamMap)=> {  
-      this.id = params.get('id');
-      var iv = this.ics.getIvs();
-     this.checkUser(this.id);
+      this.ics.sessionid = params.get('id');
+     this.checkUser(this.ics.sessionid);
     })
    // this.checkUser(); 
   }
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     }
     this.http.post(url,json).subscribe((data:any)=> {
       if(data.code == "0000")
-        this.userObj = data;
+        this.userObj = data.userObj;
       else this.router.navigate(['fail']);
       },
       error => {   

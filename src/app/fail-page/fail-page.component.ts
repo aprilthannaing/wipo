@@ -22,9 +22,9 @@ export class FailPageComponent implements OnInit {
   ngOnInit(): void {
     this.status = "Security Violation";
   }
-  // @HostListener('window:popstate')
-  // onPopState() {
-  //   this.router.navigate(['home',this.ics.id]);
-  // }
+  @HostListener('window:popstate')
+  onPopState() {
+    this.router.navigate(['home',this.ics.sessionid]);
+  }
 
 }
