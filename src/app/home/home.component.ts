@@ -30,11 +30,12 @@ export class HomeComponent implements OnInit {
    }
 
    ngOnInit(): void {   
-    this.route.paramMap.subscribe((params : ParamMap)=> {  
-      this.ics.sessionid = params.get('id');
-     this.checkUser(this.ics.sessionid);
+    this.route.paramMap.subscribe((params : ParamMap)=> {
+      if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+          this.ics.sessionid = params.get('id');
+      this.checkUser(this.ics.sessionid);
     })
-   // this.checkUser(); 
+   
   }
 
   payment(){

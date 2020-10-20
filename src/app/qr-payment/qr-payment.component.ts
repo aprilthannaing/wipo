@@ -28,7 +28,7 @@ export class QrPaymentComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['confirm']);
+    this.router.navigate(['home',this.ics.userid]);
   }
 
   checkStatus() {
