@@ -26,6 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
 import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent';
 
+
 const routes: Routes = [
   //{ path: '', component: FailPageComponent },
   { path: '', component: FailPageComponent },
