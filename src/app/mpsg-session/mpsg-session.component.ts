@@ -36,8 +36,8 @@ export class MpsgSessionComponent implements OnInit {
 
   generate() {
     const encodedString: any = btoa("merchant." + this.merchantId + ":" + this.apiPassword);
-   // const url: string = "/api/rest/version/57/merchant/CB0000000342/session";    
-    const url: string = "https://cbbank.gateway.mastercard.com/api/rest/version/57/merchant/CB0000000342/session";
+    const url: string = "/api/rest/version/57/merchant/CB0000000342/session";    
+   // const url: string = "https://cbbank.gateway.mastercard.com/api/rest/version/57/merchant/CB0000000342/session";
     const headers = {
       "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
     }
@@ -55,7 +55,7 @@ export class MpsgSessionComponent implements OnInit {
         "id": this.ics.orderid
       }
     };
-    this.http.request('post', url,{ headers: headers, body: json }).subscribe(
+    this.http.request('post', url,{ body: json }).subscribe(
       (data: any) => {
         this.ics.sessionid = data.session.id;
         this.router.navigate(['mpsg']);
