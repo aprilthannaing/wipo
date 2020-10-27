@@ -64,6 +64,11 @@ export class QrstatusComponent implements OnInit {
     this.checkStatus();
   }
 
+  cancel() {
+    //this.location.back();
+    this.router.navigate(['home',this.ics.sessionid]);
+  }
+
   nextOne() {
     this.generate();
   }

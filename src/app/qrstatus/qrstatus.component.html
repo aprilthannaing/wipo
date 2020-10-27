@@ -4,7 +4,10 @@
     <div style="text-align: center;" *ngIf="transStatus == 'P' ">
         <h2>Your Payment is Pending.</h2><!--style="margin-left: 550px;"-->
         <h4 (click)="reload()">Click here to reload!</h4><!--style="margin-top: 30px;margin-left: 620px;"-->
-      </div>
+        <div class="form-group"  style="margin-left: 40px; margin-top: 50px;">
+          <button style="margin-left: 20px;width: 70px;" type="button" class="btn btn-primary" (click)="cancel();">Cancel</button>
+        </div> 
+    </div>
     <div *ngIf="transStatus == 'S' ">
       <app-success-page></app-success-page>
     </div>
