@@ -8,15 +8,18 @@
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
       }
     },
+    
     "/payment-api": {
       "target": "https://103.150.78.103:4443",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,
       "headers": {
+        "Content-Type": "application/json",
         "Authen-Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY"
       }
     },
+
     "/api": {
       "target": "https://cbbank.gateway.mastercard.com",
       "sercure": false,
@@ -31,6 +34,11 @@
       "changeOrigin": true
     },
     "/data": {
+      "target": "http://localhost:8080",
+      "sercure": false,
+      "changeOrigin": true
+    },
+    "/api/cbtransaction": {
       "target": "http://localhost:8080",
       "sercure": false,
       "changeOrigin": true
