@@ -18,6 +18,7 @@ export class QrstatusComponent implements OnInit {
   qrString = "";   
   transStatus = "";
   showLoadingIndicator = false;
+  amount : number ;currency = "";
   resObj:any = this.Objfun();
   Objfun(){
     return { 
@@ -27,7 +28,10 @@ export class QrstatusComponent implements OnInit {
   constructor(private http: HttpClient,
     private location: Location,
     private router: Router,
-    private ics: RpIntercomService ) {    
+    private ics: RpIntercomService ) {  
+      if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+        this.checkUser(this.ics.sessionid);
+      else console.log("Session ID is not null or empty"); 
      
   }
   
@@ -70,8 +74,8 @@ export class QrstatusComponent implements OnInit {
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
     this.resObj.terminalId = "03000001";
-    this.resObj.transAmount = "800";
-    this.resObj.transCurrency =  "MMK";
+    this.resObj.transAmount = this.amount + 500;
+    this.resObj.transCurrency = this.currency;
     this.resObj.ref1 = "9592353534";
     this.resObj.ref2 = "1004355346"
     this.http.post(url,this.resObj).subscribe(
@@ -124,6 +128,23 @@ export class QrstatusComponent implements OnInit {
             console.warn('error ' , error);             
         },
       );
+    }
+
+    checkUser(id){
+      const url: string = "/data/check"; 
+      const json = {
+        id : id
+      }
+      this.http.post(url,json).subscribe((data:any)=> {
+          if(data.code == "0000"){
+            this.amount =+ data.userObj.amount;
+            this.currency = data.userObj.currency;
+          }else this.router.navigate(['fail']);
+        },
+        error => {   
+          console.warn('error' , error);             
+        }, 
+      ); 
     }
   
 }

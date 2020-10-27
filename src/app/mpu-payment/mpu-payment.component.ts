@@ -19,7 +19,7 @@ export class MPUPaymentComponent implements OnInit {
     "userDefined1": "", "userDefined2": "", "userDefined3": "",
     "hashValue": ""
   };
-
+  amount = ""; mber;currency = "";
   mpuData: any = '';
   constructor(
     private location: Location,
@@ -27,14 +27,18 @@ export class MPUPaymentComponent implements OnInit {
     private http: HttpClient,
     private ics: RpIntercomService) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {   
+      if(this.ics.sessionid != "" || this.ics.sessionid != null)  
+          this.checkUser(this.ics.sessionid);
+        else console.log("Session ID is not null or empty"); 
+    }
 
   submitForm() {
     const url: string = "/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
-    this.payment.amount = "000000030000";
+    //amount
+    this.payment.amount = this.amount;
     this.payment.currencyCode = "104";
     this.payment.userDefined1 = "cb Bank testing";
     this.payment.userDefined2 = "new switch";
@@ -69,6 +73,32 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   cancel() {
-    this.location.back();
+    //this.location.back();
+    this.router.navigate(['home',this.ics.sessionid]);
+  }
+
+  checkUser(id){
+    const url: string = "/data/check"; 
+    const json = {
+      id : id
+    }
+    this.http.post(url,json).subscribe((data:any)=> {
+        if(data.code == "0000"){
+          let amounttemp = parseFloat(data.userObj.amount + "00");
+          let amounttemp1 = this.padFun(amounttemp,12);
+          this.amount = amounttemp1;
+          this.currency = data.userObj.currency;
+        }else this.router.navigate(['fail']);
+      },
+      error => {   
+        console.warn('error' , error);             
+      }, 
+    ); 
+  }
+  //String.format("%12d", amounttemp);
+  padFun(num:number, size:number): string {
+    let s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
   }
 }

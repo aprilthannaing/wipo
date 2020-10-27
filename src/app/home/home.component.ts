@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   report () {
-    window.open("http://localhost:8081/report/visa.xlsx", "_blank");
+    window.open("http://localhost:8080/report/visa.xlsx", "_blank");
   }
 
   checkUser(id){

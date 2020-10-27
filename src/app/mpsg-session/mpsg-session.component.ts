@@ -14,7 +14,7 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 export class MpsgSessionComponent implements OnInit {
   merchantId = "CB0000000355";
   apiPassword = "50f45faae07ac50972d8414ba0a6bb4d";
-  amount = "10.00";
+  amount = "";
   returnUrl = "http://localhost:8080/wipo/saveMaster";
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';
   successIndicator = "";
@@ -26,10 +26,12 @@ export class MpsgSessionComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private ics: RpIntercomService) {
-    this.generate();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    if(this.ics.sessionid != "" || this.ics.sessionid != null)  
+        this.checkUser(this.ics.sessionid);
+      else console.log("Session ID is not null or empty"); 
   }
 
   generate() {
@@ -64,6 +66,24 @@ export class MpsgSessionComponent implements OnInit {
         this.router.navigate(['fail']);
         console.warn("error: ", error);
       });
+  }
+
+  checkUser(id){
+    const url: string = "/data/check"; 
+    const json = {
+      id : id
+    }
+    this.http.post(url,json).subscribe((data:any)=> {
+        if(data.code == "0000"){
+          this.amount = data.userObj.amount + ".00";
+          this.currency = data.userObj.currency;
+          this.generate();
+        }else this.router.navigate(['fail']);
+      },
+      error => {   
+        console.warn('error' , error);             
+      }, 
+    ); 
   }
 }
 

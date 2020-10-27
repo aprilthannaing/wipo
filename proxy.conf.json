@@ -9,7 +9,7 @@
       }
     },
     "/payment-api": {
-      "target": "https://122.248.120.187:4443",
+      "target": "https://103.150.78.103:4443",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,

@@ -28,7 +28,7 @@ import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent'
 
 const routes: Routes = [
   //{ path: '', component: FailPageComponent },
-  { path: '', component: HomeComponent },
+  { path: '', component: FailPageComponent },
   //{ path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'mpu-payment', component: MPUPaymentComponent },

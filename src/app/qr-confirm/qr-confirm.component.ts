@@ -16,7 +16,8 @@ export class ConfirmComponent implements OnInit {
   request = {"merId":"", "transRef":""};  
   resObj:any = this.Objfun();
   qrString = "";
-  
+  amount:number;currency = "";
+
   Objfun(){
     return { 
       //"reqId":"","merId":"","subMerId":"","terminalId":"", "transAmount":"", "transCurrency":"","ref1":"", "ref2":"",
@@ -31,32 +32,14 @@ export class ConfirmComponent implements OnInit {
   }
   sub: any;
   ngOnInit(): void {   
-    // this.route.paramMap.subscribe((params : ParamMap)=> {  
-    //   this.id = params.get('id');
-     
-    // })
-   // this.checkUser(); 
-  }
-  checkUser(){
-    const url: string = "/data/check"; 
-    const json = {
-      id : this.id
-    }
-    this.http.post(url,json).subscribe((data:any)=> {
-      if(data.code == "0000")
-        this.resObj.transAmount = data.result;
-      else this.router.navigate(['fail']);
-      },
-      error => {   
-        console.warn('error' , error);             
-      }, 
-    ); 
+    if(this.ics.sessionid != "" || this.ics.sessionid != null)  
+        this.checkUser(this.ics.sessionid);
+      else console.log("Session ID is not null or empty"); 
   }
   
     cancel(){
-      this.router.navigate(['home',this.ics.userid]);
+      this.router.navigate(['home',this.ics.sessionid]);
     }
-
     generate(){
       this.loading_ = true;
       const url: string =  "/payment-api/v1/qr/generate-transaction.service"; 
@@ -64,7 +47,7 @@ export class ConfirmComponent implements OnInit {
         this.resObj.merId = "581500000000017";
         this.resObj.subMerId = "0000000001700001";
         this.resObj.terminalId = "03000001";
-        this.resObj.transAmount = "800";
+        this.resObj.transAmount = this.amount + 500;
         this.resObj.transCurrency =  "MMK";
         this.resObj.ref1 = "9592353534";
         this.resObj.ref2 = "1004355346";
@@ -72,7 +55,7 @@ export class ConfirmComponent implements OnInit {
         let headers = new HttpHeaders();
         headers = headers.append('Content-Type', 'application/json');
        // headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
-        this.http.post(url,body,{headers:headers}).subscribe((data:any)=> {
+        this.http.post(url,this.resObj,{headers:headers}).subscribe((data:any)=> {
           if(data.code == '0000'){
             this.loading_ = false;
             this.resObj.merDqrCode = data.merDqrCode;
@@ -107,6 +90,23 @@ export class ConfirmComponent implements OnInit {
             console.warn('error_____ ' , error);             
         },
       );
+    }
+
+    checkUser(id){
+      const url: string = "/data/check"; 
+      const json = {
+        id : id
+      }
+      this.http.post(url,json).subscribe((data:any)=> {
+          if(data.code == "0000"){
+            this.amount =+ data.userObj.amount;
+            this.currency = data.userObj.currency;
+          }else this.router.navigate(['fail']);
+        },
+        error => {   
+          console.warn('error' , error);             
+        }, 
+      ); 
     }
 
   }
