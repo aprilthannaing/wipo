@@ -141,6 +141,7 @@ export class QrstatusComponent implements OnInit {
         id : id
       }
       this.http.post(url,json).subscribe((data:any)=> {
+        console.log("data: " , data)
           if(data.code == "0000"){
             this.amount =+ data.userObj.amount;
             this.currency = data.userObj.currency;

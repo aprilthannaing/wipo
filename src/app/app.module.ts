@@ -25,6 +25,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
 import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent';
+import { VisaConfirmComponent } from './visa-confirm/visa-confirm.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,8 @@ const routes: Routes = [
   { path: 'checkStatus', component: QrstatusComponent },
   { path: 'saveMaster', component: MpsgSaveInfoComponent },
   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
+  { path: 'visa-confirm', component: VisaConfirmComponent },
+
 ];
 
 
@@ -59,7 +62,8 @@ const routes: Routes = [
     MpsgSessionComponent, 
     QrstatusComponent, 
     MpsgSaveInfoComponent, 
-    FrontEndRedirectComponent,
+    FrontEndRedirectComponent, 
+    VisaConfirmComponent,
   ],
   
   imports: [ 

@@ -8,7 +8,6 @@ export class RpIntercomService {
     _title = "WIPO Filling";
     sessionid: string = "";
     userid: string = "";  
-    orderid: string = "28";
     version: string = ""; 
     private _mybean: any;
     transRef: string = "";

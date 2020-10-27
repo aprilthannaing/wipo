@@ -37,7 +37,6 @@ export class MPUPaymentComponent implements OnInit {
     const url: string = "/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
-    //amount
     this.payment.amount = this.amount;
     this.payment.currencyCode = "104";
     this.payment.userDefined1 = "cb Bank testing";
@@ -88,6 +87,9 @@ export class MPUPaymentComponent implements OnInit {
           let amounttemp1 = this.padFun(amounttemp,12);
           this.amount = amounttemp1;
           this.currency = data.userObj.currency;
+          this.payment.invoiceNo = data.userObj.paymentId;
+
+          console.log(" this.payment.invoiceNo !!!!!!!!!!!!" ,  this.payment.invoiceNo);
         }else this.router.navigate(['fail']);
       },
       error => {   

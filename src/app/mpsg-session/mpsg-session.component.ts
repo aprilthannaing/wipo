@@ -20,6 +20,7 @@ export class MpsgSessionComponent implements OnInit {
   successIndicator = "";
   description = "WIPO Payment Fee";
   currency = "MMK";
+  orderId = "";
 
   constructor(
     private location: Location,
@@ -52,7 +53,7 @@ export class MpsgSessionComponent implements OnInit {
         "amount": this.amount,
         "currency": this.currency,
         "description": this.description,
-        "id": this.ics.orderid
+        "id": this.orderId
       }
     };
     this.http.request('post', url,{ body: json }).subscribe(
@@ -77,6 +78,8 @@ export class MpsgSessionComponent implements OnInit {
         if(data.code == "0000"){
           this.amount = data.userObj.amount + ".00";
           this.currency = data.userObj.currency;
+          this.orderId = data.userObj.paymentId; 
+          console.log("orderId !!!!!!!!!!!!!" , this.orderId)
           this.generate();
         }else this.router.navigate(['fail']);
       },
