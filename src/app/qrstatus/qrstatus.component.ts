@@ -29,9 +29,10 @@ export class QrstatusComponent implements OnInit {
     private location: Location,
     private router: Router,
     private ics: RpIntercomService ) {  
-      if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+      if(this.ics.sessionid == "" || this.ics.sessionid == null){
+        console.log("Session ID is not null or empty"); 
+      }else  
         this.checkUser(this.ics.sessionid);
-      else console.log("Session ID is not null or empty"); 
      
   }
   

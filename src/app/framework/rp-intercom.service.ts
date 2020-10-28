@@ -15,4 +15,6 @@ export class RpIntercomService {
     merDqrCode: string = "";    
     _apiurl = "http://localhost:8082";
     _cbpayurl = "https://122.248.120.187:4443";
+    _visaurl = "https://cbbank.gateway.mastercard.com";
+    _mpuurl = "https://122.248.120.252:60145";
 }

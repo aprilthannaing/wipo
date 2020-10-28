@@ -4,11 +4,11 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 
 
 @Component({
-  selector: 'app-visa-confirm',
-  templateUrl: './visa-confirm.component.html',
-  styleUrls: ['./visa-confirm.component.styl']
+  selector: 'app-mpsg-confirm',
+  templateUrl: './mpsg-confirm.component.html',
+  styleUrls: ['./mpsg-confirm.component.styl']
 })
-export class VisaConfirmComponent implements OnInit {
+export class MpsgConfirmComponent implements OnInit {
 
   constructor(
     private router: Router,

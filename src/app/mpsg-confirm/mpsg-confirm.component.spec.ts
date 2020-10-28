@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VisaConfirmComponent } from './visa-confirm.component';
+import { MpsgConfirmComponent } from './mpsg-confirm.component';
 
 describe('VisaConfirmComponent', () => {
-  let component: VisaConfirmComponent;
-  let fixture: ComponentFixture<VisaConfirmComponent>;
+  let component: MpsgConfirmComponent;
+  let fixture: ComponentFixture<MpsgConfirmComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VisaConfirmComponent ]
+      declarations: [ MpsgConfirmComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VisaConfirmComponent);
+    fixture = TestBed.createComponent(MpsgConfirmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

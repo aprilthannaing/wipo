@@ -1,20 +1,20 @@
 <app-header></app-header>
 <div class="container">
   <div class="col-md-12">
-    <div style="text-align: center;" *ngIf="transStatus == 'P' ">
-        <h2>Your Payment is Pending.</h2><!--style="margin-left: 550px;"-->
+    <div *ngIf="transStatus == 'P' " style="text-align: center;">
+        <h2>Your Payment is Pending...</h2><!--style="margin-left: 550px;"-->
         <h4 (click)="reload()">Click here to reload!</h4><!--style="margin-top: 30px;margin-left: 620px;"-->
-        <div class="form-group"  style="margin-left: 40px; margin-top: 50px;">
-          <button style="margin-left: 20px;width: 70px;" type="button" class="btn btn-primary" (click)="cancel();">Cancel</button>
-        </div> 
     </div>
-    <div *ngIf="transStatus == 'S' ">
+    <div *ngIf="transStatus == 'S' " style="text-align: center;">
       <app-success-page></app-success-page>
     </div>
-    <div *ngIf="transStatus == 'E' ">
+    <div *ngIf="transStatus == 'E' " style="text-align: center;">
       <h2>Your Payment has been expired.</h2><!--style="margin-left: 550px;"-->
       <h4 (click)="nextOne()">Please Click here!</h4><!--style="margin-top: 30px;margin-left: 670px;"-->
     </div>
+    <div *ngIf="transStatus == 'P' || transStatus == 'S' || transStatus == 'E' " class="form-group" style="text-align: center;">
+      <button type="button" class="btn btn-primary" (click)="cancel();">Cancel</button>
+    </div> 
     <div *ngIf="showLoadingIndicator == true" class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
   </div>
 </div>

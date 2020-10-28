@@ -52,9 +52,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['fail']);
   }
 
-  visa() {
-    //  this.router.navigate(['visa']);
-    this.router.navigate(['visa-confirm']);
+  visa (){
+    this.router.navigate(['mpsg-confirm']);    
   }
 
   report() {
