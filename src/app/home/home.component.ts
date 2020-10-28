@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RpIntercomService } from '../framework/rp-intercom.service';
 
 @Component({
@@ -15,72 +15,69 @@ export class HomeComponent implements OnInit {
   email = "htethtetsan57@gmail.com";
   phoneNo = "09784535453";
   description = "ဟိုတယ်ဆိုင်ရာဝန်ဆောင်မှု(အခြေခံ)သင်တန်းများ";
-  userObj : any;
-  // userObj = {
-  //   "name":"","email":"","phoneNo":"","paymentdescription":"","amount":"","currency":"","paymentId":""
-  // }
+  userObj: any;
 
   constructor(
     private router: Router,
     private location: Location,
-    private http : HttpClient,
-    private route : ActivatedRoute,
-    private ics : RpIntercomService
-    ) {   
-   }
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private ics: RpIntercomService
+  ) {
+  }
 
-   ngOnInit(): void {   
-    this.route.paramMap.subscribe((params : ParamMap)=> {
-      if(this.ics.sessionid == "" || this.ics.sessionid == null)  
-          this.ics.sessionid = params.get('id');
-          console.log("this.ics.sessionid ....." , this.ics.sessionid)
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      if (this.ics.sessionid == "" || this.ics.sessionid == null)
+        this.ics.sessionid = params.get('id');
+      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
-   
+
   }
 
-  payment(){
+  payment() {
     this.router.navigate(['mpu-payment']);
-  } 
-
-  cbPay(){
-    this.router.navigate(['confirm']);
-  } 
-
-  success(){
-    this.router.navigate(['success']);
-  } 
-
-  fail(){
-    this.router.navigate(['fail']);
-  } 
-
-  visa (){
-  //  this.router.navigate(['visa']);
-    this.router.navigate(['visa-confirm']);    
   }
 
-  report () {
+  cbPay() {
+    this.router.navigate(['confirm']);
+  }
+
+  success() {
+    this.router.navigate(['success']);
+  }
+
+  fail() {
+    this.router.navigate(['fail']);
+  }
+
+  visa() {
+    //  this.router.navigate(['visa']);
+    this.router.navigate(['visa-confirm']);
+  }
+
+  report() {
     window.open("http://localhost:8080/report/visa.xlsx", "_blank");
   }
 
-  checkUser(id){
-    console.log("this.ics.sessionid ....." , this.ics.sessionid)
+  checkUser(id) {
+    console.log("this.ics.sessionid .....", this.ics.sessionid)
 
-    const url: string = "/data/check"; 
+    const url: string = "/payments/check";
     const json = {
-      id : id
+      id: id
     }
-    this.http.post(url,json).subscribe((data:any)=> {
-      if(data.code == "0000"){
-        console.log("data!!!!", data.userObj);
+    this.http.post(url, json).subscribe((data: any) => {
+      console.log("data: ", data)
+      if (data.code == "0000") {
         this.userObj = data.userObj;
-    }
+      }
       else this.router.navigate(['fail']);
+    },
+      error => {
+        console.warn('error', error);
       },
-      error => {   
-        console.warn('error' , error);             
-      }, 
-    ); 
+    );
   }
 }
