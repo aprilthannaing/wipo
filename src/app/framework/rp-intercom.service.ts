@@ -7,6 +7,7 @@ export class RpIntercomService {
     rpbean$ = this._rpbeanSource.asObservable();
     _title = "WIPO Filling";
     sessionid: string = "";
+    orderid = "";
     userid: string = "";  
     version: string = ""; 
     private _mybean: any;

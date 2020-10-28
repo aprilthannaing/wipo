@@ -44,8 +44,7 @@ const routes: Routes = [
   { path: 'checkStatus', component: QrstatusComponent },
   { path: 'saveMaster', component: MpsgSaveInfoComponent },
   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
-  { path: 'visa-confirm', component: VisaConfirmComponent },
-
+  { path: 'visa-confirm', component: VisaConfirmComponent }
 ];
 
 
