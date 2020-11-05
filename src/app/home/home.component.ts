@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit {
   }
 
   visa (){
+<<<<<<< Updated upstream
+=======
+  //  this.router.navigate(['visa']);
+>>>>>>> Stashed changes
     this.router.navigate(['mpsg-confirm']);    
   }
 
