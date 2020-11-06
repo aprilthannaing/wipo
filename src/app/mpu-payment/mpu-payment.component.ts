@@ -19,7 +19,7 @@ export class MPUPaymentComponent implements OnInit {
     "userDefined1": "", "userDefined2": "", "userDefined3": "",
     "hashValue": ""
   };
-  amount = ""; mber;currency = "";
+  totalAmount = ""; mber;currency = "";
   mpuData: any = '';
   constructor(
     private location: Location,
@@ -28,24 +28,25 @@ export class MPUPaymentComponent implements OnInit {
     private ics: RpIntercomService) { }
 
     ngOnInit(): void {   
-      if(this.ics.sessionid != "" || this.ics.sessionid != null)  
-          this.checkUser(this.ics.sessionid);
-        else console.log("Session ID is not null or empty"); 
+      if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+        console.log("Session ID is not null or empty"); 
+      else
+        this.checkUser(this.ics.sessionid);
     }
 
   submitForm() {
-    const url: string = "/UAT/Payment/Payment/pay";
+    const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
-    this.payment.amount = this.amount;
+    this.payment.amount = this.totalAmount;
     this.payment.currencyCode = "104";
-    this.payment.userDefined1 = "cb Bank testing";
+    this.payment.userDefined1 = this.ics.sessionid;
     this.payment.userDefined2 = "new switch";
     this.payment.userDefined3 = "test transaction";
     this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
     const json: any = this.payment;
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
+    //let headers = new HttpHeaders();
+    //headers = headers.append('Content-Type', 'application/json');
     this.http.post(url, json, { responseType: 'text' as 'json', observe: 'response' }).subscribe(
       data => {
         window.location.href = data.url;
@@ -77,18 +78,20 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   checkUser(id){
-    const url: string = "/data/check"; 
+    const url: string =this.ics._apiurl + "/payments/check"; 
     const json = {
-      id : id
+      "id"   : id,
+      "type" : "MPU"
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000"){
-          let amounttemp = parseFloat(data.userObj.amount + "00");
-          let amounttemp1 = this.padFun(amounttemp,12);
-          this.amount = amounttemp1;
-          this.currency = data.userObj.currency;
-          this.payment.invoiceNo = data.userObj.paymentId;
-
+          let amount =+ data.userObj.amount1;
+          let tax =+ data.userObj.amount2;
+          let totalAmount = amount + tax;
+          let amounttemp = parseFloat(totalAmount + "00");
+          this.totalAmount = this.padFun(amounttemp,12);
+          this.currency = data.userObj.currencyType;
+          this.payment.invoiceNo = data.userObj.Id + "";
           console.log(" this.payment.invoiceNo !!!!!!!!!!!!" ,  this.payment.invoiceNo);
         }else this.router.navigate(['fail']);
       },

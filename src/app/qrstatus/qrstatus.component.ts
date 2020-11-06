@@ -18,7 +18,7 @@ export class QrstatusComponent implements OnInit {
   qrString = "";   
   transStatus = "";
   showLoadingIndicator = false;
-  amount : number ;currency = "";
+  amount1 : number ;amount2 : number;currency = "";
   resObj:any = this.Objfun();
   Objfun(){
     return { 
@@ -41,7 +41,7 @@ export class QrstatusComponent implements OnInit {
   }
 
   checkStatus() {
-    const url: string = "/payment-api/v1/qr/check-transaction.service";
+    const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/check-transaction.service";
     this.request.merId = "581500000000017";
     this.request.transRef = this.ics.transRef;
     console.log(" this.transRef: ", this.ics.transRef);
@@ -75,16 +75,19 @@ export class QrstatusComponent implements OnInit {
   }
 
   generate(){
-    const url: string= "/payment-api/v1/qr/generate-transaction.service"; 
+    const url: string= this.ics._cbpayurl + "/payment-api/v1/qr/generate-transaction.service"; 
     this.resObj.reqId =  "2d21a5715c034efb7e0aa383b885fc7a";
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
     this.resObj.terminalId = "03000001";
-    this.resObj.transAmount = this.amount + 500;
+   // this.resObj.transAmount = this.amount + 500;
     this.resObj.transCurrency = this.currency;
     this.resObj.ref1 = "9592353534";
     this.resObj.ref2 = "1004355346"
-    this.http.post(url,this.resObj).subscribe(
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
+    this.http.post(url,this.resObj,{headers:headers}).subscribe(
       (data:any)=> {
         if(data.code == '0000'){
           this.ics.transRef = data.transRef;
@@ -106,7 +109,7 @@ export class QrstatusComponent implements OnInit {
         "transStatus": obj,
         "transRef": this.request.transRef
       }
-      const url: string ="/operation/saveCBPaytransaction";
+      const url: string =this.ics._apiurl + "/operation/saveCBPaytransaction";
       this.http.post(url, json).subscribe(
         (data:any)=> {
          console.log("Save_____" + data);
@@ -124,8 +127,8 @@ export class QrstatusComponent implements OnInit {
       this.resObj.refNo= obj.refNo;
       this.resObj.transExpiredTime= obj.transExpiredTime;
       this.resObj.transRef= obj.transRef;
-      
-      const url: string= "/operation/saveCBPaytransaction";
+      this.resObj.sessionId = this.ics.sessionid;
+      const url: string=this.ics._apiurl + "/operation/saveCBPaytransaction";
       this.http.post(url, JSON.stringify(this.resObj)).subscribe(
         (data:any)=> {
          console.log("Save_____" + data);
@@ -137,15 +140,18 @@ export class QrstatusComponent implements OnInit {
     }
 
     checkUser(id){
-      const url: string = "/data/check"; 
+      const url: string =this.ics._apiurl + "/payments/check"; 
       const json = {
-        id : id
+        "id"   : id,
+        "type" : "CBPAY"
       }
       this.http.post(url,json).subscribe((data:any)=> {
         console.log("data: " , data)
           if(data.code == "0000"){
-            this.amount =+ data.userObj.amount;
-            this.currency = data.userObj.currency;
+            this.amount1 =+ data.userObj.amount1;
+            this.amount2 =+ data.userObj.amount2;
+            this.resObj.transAmount = this.amount1 + this.amount2;
+            this.currency = data.userObj.currencyType;
           }else this.router.navigate(['fail']);
         },
         error => {   

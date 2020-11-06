@@ -14,8 +14,10 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 export class MpsgSessionComponent implements OnInit {
   merchantId = "CB0000000355";
   apiPassword = "50f45faae07ac50972d8414ba0a6bb4d";
-  amount = "";
-  returnUrl = "http://localhost:8080/wipo/saveMaster";
+  amount1 :number;
+  amount2 :number;
+  totalAmount = "";
+  returnUrl = this.ics._clienturl + "/saveMaster";
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';
   successIndicator = "";
   description = "WIPO Payment Fee";
@@ -29,15 +31,15 @@ export class MpsgSessionComponent implements OnInit {
   }
 
   ngOnInit(): void {   
-    if(this.ics.sessionid != "" || this.ics.sessionid != null)  
-        this.checkUser(this.ics.sessionid);
-      else console.log("Session ID is not null or empty"); 
+    if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+      console.log("Session ID is not null or empty"); 
+    else
+      this.checkUser(this.ics.sessionid);
   }
 
   generate() {
     const encodedString: any = btoa("merchant." + this.merchantId + ":" + this.apiPassword);
-    const url: string = "/api/rest/version/57/merchant/CB0000000342/session";    
-   // const url: string = "https://cbbank.gateway.mastercard.com/api/rest/version/57/merchant/CB0000000342/session";
+    const url: string = this.ics._visaurl + "/api/rest/version/57/merchant/CB0000000342/session";    
     const headers = {
       "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
     }
@@ -49,17 +51,17 @@ export class MpsgSessionComponent implements OnInit {
         "returnUrl": this.returnUrl
       },
       "order": {
-        "amount": this.amount,
+        "amount": this.totalAmount,
         "currency": this.currency,
         "description": this.description,
         "id": this.ics.orderid
       }
     };
-    this.http.request('post', url,{ body: json }).subscribe(
+    this.http.post(url,json,{headers: headers}).subscribe(
       (data: any) => {
-        this.ics.sessionid = data.session.id;
+        this.ics.mpsgsessionid = data.session.id;
         this.router.navigate(['mpsg']);
-        console.log("this.sessionId : ", this.ics.sessionid);
+        console.log("this.sessionId : ", this.ics.mpsgsessionid);
         console.log("session version: ", data);
       },
       error => {
@@ -69,15 +71,18 @@ export class MpsgSessionComponent implements OnInit {
   }
 
   checkUser(id){
-    const url: string = "/data/check"; 
+    const url: string =this.ics._apiurl + "/payments/check"; 
     const json = {
-      id : id
+      "id"   : id,
+      "type" : "VISA"
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000"){
-          this.amount = data.userObj.amount + ".00";
-          this.currency = data.userObj.currency;
-          this.ics.orderid = data.userObj.paymentId; 
+          this.amount1 =+ data.userObj.amount1;
+          this.amount2 =+ data.userObj.amount2;
+          this.totalAmount = this.amount1 + this.amount2 + ".00";
+          this.currency = data.userObj.currencyType;
+          this.ics.orderid = data.userObj.Id + ""; 
           console.log("orderId !!!!!!!!!!!!!" , data.userObj.paymentId)
           this.generate();
         }else this.router.navigate(['fail']);

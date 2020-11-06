@@ -29,7 +29,7 @@ export class MpsgPaymentComponent implements OnInit {
       description: 'MOHT Payment Fee',
     },
     session: {
-      id: this.ics.sessionid //insert your session id
+      id: this.ics.mpsgsessionid //insert your session id
     },              
 
     interaction: {
@@ -69,6 +69,6 @@ export class MpsgPaymentComponent implements OnInit {
       scripttagElement.src = "https://cbbank.gateway.mastercard.com/checkout/version/57/checkout.js";
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
-    })    
+    })
   }
 }

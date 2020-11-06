@@ -53,10 +53,6 @@ export class HomeComponent implements OnInit {
   }
 
   visa (){
-<<<<<<< Updated upstream
-=======
-  //  this.router.navigate(['visa']);
->>>>>>> Stashed changes
     this.router.navigate(['mpsg-confirm']);    
   }
 
@@ -69,16 +65,18 @@ export class HomeComponent implements OnInit {
 
     const url: string = "/payments/check";
     const json = {
-      id: id
+      "id"   : id,
+      "type" : ""
     }
     this.http.post(url, json).subscribe((data: any) => {
       console.log("data: ", data)
       if (data.code == "0000") {
         this.userObj = data.userObj;
       }
-      else this.router.navigate(['fail']);
+      else this.fail();
     },
       error => {
+        this.fail();
         console.warn('error', error);
       },
     );

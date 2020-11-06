@@ -19,14 +19,16 @@ export class MpsgSaveInfoComponent implements OnInit {
     private http: HttpClient,
   ) { }
 
-  ngOnInit(): void {
-    console.log("orderid: " + this.ics.orderid)
-     this.getOrderId();
+  ngOnInit(): void {   
+    if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+      console.log("Session ID is not null or empty"); 
+    else
+      this.checkUser(this.ics.sessionid);
   }
 
   getOrderId() {
     console.log(" Order ID before saving: " + this.ics.orderid);
-    const url: string = "https://cbbank.gateway.mastercard.com/api/rest/version/57/merchant/CB0000000342/order/" +  this.ics.orderid;
+    const url: string = this.ics._visaurl + "/api/rest/version/57/merchant/CB0000000342/order/" +  this.ics.orderid;
     const headers =  {
       "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
     }
@@ -79,13 +81,33 @@ export class MpsgSaveInfoComponent implements OnInit {
 
   save(json: any) {
     console.log("json: ", this.json);
-    const url: string = "http://localhost:8081/operation/saveVisa";
-    this.http.request('post', url, { body: json }).subscribe(
+    const url: string = this.ics._apiurl + "/operation/saveVisa";
+    this.http.post(url,json).subscribe(
       (data: any) => {
         console.log("response: ", data);
       },
       error => {
         console.warn("error: ", error);
       });
+  }
+
+  checkUser(id){
+    const url: string = this.ics._apiurl + "/payments/check"; 
+    const json = {
+      "id"   : id,
+      "type" : "VISA"
+    }
+    this.http.post(url,json).subscribe((data:any)=> {
+        if(data.code == "0000"){
+          this.getOrderId();
+          this.router.navigate(['success']);
+        }else 
+          this.router.navigate(['fail']);
+      },
+      error => {  
+        this.router.navigate(['fail']); 
+        console.warn('error' , error);             
+      }, 
+    ); 
   }
 }
