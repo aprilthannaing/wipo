@@ -11,10 +11,6 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 })
 export class HomeComponent implements OnInit {
   id = "";
-  userName = "Htet Het San";
-  email = "htethtetsan57@gmail.com";
-  phoneNo = "09784535453";
-  description = "ဟိုတယ်ဆိုင်ရာဝန်ဆောင်မှု(အခြေခံ)သင်တန်းများ";
   userObj: any;
 
   constructor(
