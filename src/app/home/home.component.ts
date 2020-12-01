@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   checkUser(id) {
     console.log("this.ics.sessionid .....", this.ics.sessionid)
 
-    const url: string = "/payments/check";
+    const url: string = "http://localhost:8080/payments/check";
     const json = {
       "id"   : id,
       "type" : ""

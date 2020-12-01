@@ -22,8 +22,31 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
 import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent';
+
 import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
 import { SuccessPageComponent } from './success-page/success-page.component';
+
+
+
+const routes: Routes = [
+  //{ path: '', component: FailPageComponent },
+  { path: '', component: FailPageComponent },
+  //{ path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
+  { path: 'mpu-payment', component: MPUPaymentComponent },
+  { path: 'success', component: SuccessPageComponent },
+  { path: 'fail', component: FailPageComponent },
+  { path: 'confirm', component: ConfirmComponent },
+  {path: 'confirm/:id', component : ConfirmComponent}, 
+  { path: 'qrcode', component: QrPaymentComponent },
+  { path: 'visa', component: MpsgSessionComponent },
+  { path: 'mpsg', component: MpsgPaymentComponent },
+  { path: 'checkStatus', component: QrstatusComponent },
+  { path: 'saveMaster', component: MpsgSaveInfoComponent },
+  { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
+  { path: 'header', component: HeaderComponent}
+];
+
 
 @NgModule({
   declarations: [
@@ -40,6 +63,7 @@ import { SuccessPageComponent } from './success-page/success-page.component';
     FrontEndRedirectComponent, 
     MpsgConfirmComponent, 
     SuccessPageComponent,
+    FrontEndRedirectComponent
   ],
   
   imports: [ 

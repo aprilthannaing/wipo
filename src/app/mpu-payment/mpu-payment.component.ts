@@ -67,6 +67,7 @@ export class MPUPaymentComponent implements OnInit {
     }
 
     const key = "7M8N3SLQ8QILSN6DOZIN1NBOVWMMGIVA";
+
     var crypto = require("crypto");
     var hashValue = crypto.createHmac('sha1', key).update(paramStr).digest('hex') + "";
     return hashValue;

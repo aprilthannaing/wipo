@@ -25,10 +25,10 @@ export class SuccessPageComponent implements OnInit {
   }
 
   sessionOut(){
-    const url: string = "/payments/sessionOut"; 
+    const url: string = "http://localhost:8080/payments/sessionOut"; 
     const json = {
       //id : this.ics.sessionid
-      id : "c3c00ef30aa5846b193c412233520acda1acc32fa1277779c5bbc373075889a247040af9ecc105a29205258abbf8d700"
+      id: "deb0a88c50653b8d0ca2905f694d5cf9"
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000")

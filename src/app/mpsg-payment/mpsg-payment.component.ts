@@ -69,6 +69,8 @@ export class MpsgPaymentComponent implements OnInit {
       scripttagElement.src = "https://cbbank.gateway.mastercard.com/checkout/version/57/checkout.js";
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
+
     })
+
   }
 }

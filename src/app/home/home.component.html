@@ -43,31 +43,34 @@
                 </div>
 
             </div>-->
-            <app-header></app-header>
-            <div class="grid-container1">
+            <!-- <app-header></app-header> -->
+            <!-- <div class="grid-container1">
                 <div class="grid-item-header">
-                    <h4 style="text-align: center;">အချက်အလက်ပြန်စစ်ရန်နှင့် ငွေပေးချေရန်</h4>
+                    <h4 style="text-align: center;">To check & pay</h4>
                 </div>
             </div>
             <div class="grid-container2">
-                <div class="grid-item">အမည်</div>
-                <div class="grid-item">{{ userObj.payerName}}</div>
+                <div class="grid-item">Requestor Id</div>
+                <div class="grid-item">{{userObj.requestorId}}</div>
 
-                <div class="grid-item">ဖုန်းနံပါတ်</div>
+                <div class="grid-item">Name</div>
+                <div class="grid-item">{{userObj.payerName}}</div>
+
+                <div class="grid-item">Phone number</div>
                 <div class="grid-item">{{userObj.payerPhone}}</div>
 
-                <div class="grid-item">အီးမေးလ်</div>
+                <div class="grid-item">Email</div>
                 <div class="grid-item">{{userObj.payerEmail}}</div>
 
-                <div class="grid-item">အကြောင်းအရာ</div>
+                <div class="grid-item">Payment Note</div>
                 <div class="grid-item">{{userObj.paymentNote}}</div>
 
-                <div class="grid-item">ကျသင့်ငွေ</div>
+                <div class="grid-item">Fee</div>
                 <div class="grid-item"><span style="font-weight:bold">{{userObj.totalAmount}}</span> &nbsp;{{userObj.currencyType}}</div>
 
             </div>
 
-            <h3 style="margin-left: 133px;margin-top: 60px;">ပေးချေလိုသည့် Payment အမျိုးအစားကို ရွေးချယ်ပါ။</h3>
+            <h3 style="margin-left: 133px;margin-top: 60px;">Choose payment type you want to pay</h3>
             <div class="row" style="margin-left: 133px;margin-top: 40px;">
                 <img src="assets/img/visa.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()"
                     class="hover-shadow cursor">
@@ -79,8 +82,68 @@
                     class="hover-shadow cursor">
 
             </div>
-            <!-- <button style="margin-left: 570px;margin-top: 30px;" class="btn btn-primary" (click)="report()">Transaction
+
+            <button style="margin-left: 570px;margin-top: 30px;" class="btn btn-primary" (click)="report()">Transaction
                 Report</button> -->
+
         <!--</div>
     </div>
 </nav>-->
+<app-header></app-header>
+
+    <div style="max-width: 887;margin-left: 215px;">
+        
+        <div class="grid-container1" style="padding-top:15px;padding-bottom:15px;background-color:  rgb(239, 245, 245);">
+            <!-- background-color:  rgb(239, 245, 245); -->
+            <div class="grid-item-header">
+                <h4 style="text-align: center;">To check & pay</h4>
+            </div>
+        </div>
+        <div class="grid-container2">
+            <div class="grid-item">Requestor Id</div>
+            <div class="grid-item">{{userObj.requestorId}}</div>
+
+            <div class="grid-item">Name</div>
+            <div class="grid-item">{{userObj.payerName}}</div>
+
+            <div class="grid-item">Phone number</div>
+            <div class="grid-item">{{userObj.payerPhone}}</div>
+
+            <div class="grid-item">Email</div>
+            <div class="grid-item">{{userObj.payerEmail}}</div>
+
+            <div class="grid-item">Payment Note</div>
+            <div class="grid-item">{{userObj.paymentNote}}</div>
+
+            <div class="grid-item">Fee</div>
+            <div class="grid-item"><span style="font-weight:bold">{{userObj.totalAmount}}</span> &nbsp;{{userObj.currencyType}}</div>
+        </div>
+        <h3 style="margin-left: 138px;margin-top: 60px;">Choose payment type you want to pay</h3>
+            <div class="row" style="margin-left: 120px;margin-top: 40px;">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/visa.png" style="width:140px;height:140px;margin-right: 30px;" (click)="visa()"
+                    class="hover-shadow cursor">
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/master_logo.png" style="width:140px;height:140px;margin-right:30px;"
+                    (click)="visa()" class="hover-shadow cursor">
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/mpu.jpg" style="width:140px;height:140px;margin-right: 30px;" (click)="payment()"
+                    class="hover-shadow cursor">
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/cbpay.jpg" style="width:140px;height:140px;margin-right: 30px;" (click)="cbPay()"
+                    class="hover-shadow cursor">
+                </div>
+        
+            </div>
+            <div style="margin-left: 430px;margin-top: 40px;">
+                <img src="assets/img/cbBank.png" width="170" height="100">
+            </div>
+    </div>
+
+
+
+
+
