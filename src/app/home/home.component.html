@@ -91,12 +91,11 @@
 </nav>-->
 <app-header></app-header>
 
-    <div style="max-width: 887;margin-left: 215px;">
-        
+<div class="container" style="margin: 0 auto;max-width: 50%;">
         <div class="grid-container1" style="padding-top:15px;padding-bottom:15px;background-color:  rgb(239, 245, 245);">
             <!-- background-color:  rgb(239, 245, 245); -->
             <div class="grid-item-header">
-                <h4 style="text-align: center;">To check & pay</h4>
+                <h5 style="text-align: center;font-size: medium;">To check & pay</h5>
             </div>
         </div>
         <div class="grid-container2">
@@ -118,8 +117,8 @@
             <div class="grid-item">Fee</div>
             <div class="grid-item"><span style="font-weight:bold">{{userObj.totalAmount}}</span> &nbsp;{{userObj.currencyType}}</div>
         </div>
-        <h3 style="margin-left: 138px;margin-top: 60px;">Choose payment type you want to pay</h3>
-            <div class="row" style="margin-left: 120px;margin-top: 40px;">
+        <h4 style="text-align:center;margin-top: 60px;">Choose payment type you want to pay</h4>
+            <div class="row" style="margin-top: 40px;">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                 <img src="assets/img/visa.png" style="width:140px;height:140px;margin-right: 30px;" (click)="visa()"
                     class="hover-shadow cursor">
@@ -138,10 +137,12 @@
                 </div>
         
             </div>
-            <div style="margin-left: 430px;margin-top: 40px;">
+            <div style="margin-top: 40px;text-align: center;">
                 <img src="assets/img/cbBank.png" width="170" height="100">
             </div>
-    </div>
+    <!-- </div> -->
+</div>
+    
 
 
 

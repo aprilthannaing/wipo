@@ -76,5 +76,6 @@ export class HomeComponent implements OnInit {
         console.warn('error', error);
       },
     );
+    
   }
 }
