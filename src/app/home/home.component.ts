@@ -53,13 +53,13 @@ export class HomeComponent implements OnInit {
   }
 
   report() {
-    window.open("http://localhost:8080/report/visa.xlsx", "_blank");
+    window.open("http://localhost:8083/report/visa.xlsx", "_blank");
   }
 
   checkUser(id) {
     console.log("this.ics.sessionid .....", this.ics.sessionid)
 
-    const url: string = "http://localhost:8080/payments/check";
+    const url: string = "http://localhost:8083/payments/check";
     const json = {
       "id"   : id,
       "type" : ""

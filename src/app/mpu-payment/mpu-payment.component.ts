@@ -35,7 +35,8 @@ export class MPUPaymentComponent implements OnInit {
     }
 
   submitForm() {
-    const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
+    //this.ics._mpuurl + 
+    const url: string = "/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
     this.payment.amount = this.totalAmount;
