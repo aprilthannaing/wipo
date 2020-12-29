@@ -1,3 +1,4 @@
+
 <!--<nav class="navbar navbar-default" style="height: 120px;background-color: #1fb0fb;">
 
     <div class="cotainer-fluid">
@@ -99,10 +100,13 @@
             </div>
         </div>
         <div class="grid-container2">
-            <div class="grid-item">Requestor Id</div>
+            <div class="grid-item">Payee</div>
+            <div class="grid-item">Department of Intellectual Property (DIPM)<br>Ministry of Commerce</div>
+
+            <div class="grid-item">E-filing Reference Number</div>
             <div class="grid-item">{{userObj.requestorId}}</div>
 
-            <div class="grid-item">Name</div>
+            <div class="grid-item">User Name</div>
             <div class="grid-item">{{userObj.payerName}}</div>
 
             <div class="grid-item">Phone number</div>
@@ -111,38 +115,39 @@
             <div class="grid-item">Email</div>
             <div class="grid-item">{{userObj.payerEmail}}</div>
 
-            <div class="grid-item">Payment Note</div>
-            <div class="grid-item">{{userObj.paymentNote}}</div>
-
             <div class="grid-item">Fee</div>
-            <div class="grid-item"><span style="font-weight:bold">{{userObj.totalAmount}}</span> &nbsp;{{userObj.currencyType}}</div>
+            <div class="grid-item"><span style="font-weight:bold;">{{userObj.totalAmount | currency:"MMK"}}</span></div>
+            <!-- &nbsp;{{userObj.currencyType}} -->
+            
         </div>
-        <h4 style="text-align:center;margin-top: 60px;color: blue;">Select payment option</h4>
-            <div class="row" style="margin-top: 40px;">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                <img src="assets/img/visa.png" style="width:140px;height:120px;margin-right: 30px;" (click)="visa()"
+        <h4 style="text-align:center;margin-top: 60px;">Choose payment type you want to pay</h4>
+            <div class="row" style="margin-top:40px;text-align: center;">
+               
+                <div class="col-3 col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/visa.png" style="width:120px;height:120px;" (click)="visa()"
                     class="hover-shadow cursor">
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                <img src="assets/img/master_logo.png" style="width:140px;height:120px;margin-right:30px;"
+                <div class="col-3 col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/master_logo.png" style="width:120px;height:120px;"
                     (click)="visa()" class="hover-shadow cursor">
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                <img src="assets/img/mpu.jpg" style="width:140px;height:120px;margin-right: 30px;" (click)="payment()"
+                <div class="col-3 col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/mpu.jpg" style="width:120px;height:120px;" (click)="payment()"
                     class="hover-shadow cursor">
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                <img src="assets/img/cbpay.jpg" style="width:140px;height:120px;margin-right: 30px;" (click)="cbPay()"
+                <div class="col-3 col-md-3 col-sm-6 col-xs-12">
+                <img src="assets/img/cbpay.jpg" style="width:120px;height:120px;" (click)="cbPay()"
                     class="hover-shadow cursor">
                 </div>
         
             </div>
             <div style="margin-top: 40px;text-align: center;">
-                <img src="assets/img/cbBank.png" width="170" height="100">
+                <img src="assets/img/cbBankLogo.png" width="170" height="100">
             </div>
     <!-- </div> -->
 </div>
     
+
 
 
 

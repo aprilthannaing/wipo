@@ -16,7 +16,7 @@ export class SuccessPageComponent implements OnInit {
     private ics: RpIntercomService
   ) {
   }
-
+  response = {"requestorId":"", "transactionId":"", "payerName":"", "payerPhone":"", "payerEmail":"", "totalAmount":""};
   ngOnInit(): void {
     //if(this.ics.sessionid != "" || this.ics.sessionid != null)  
      //   console.log("Session ID is not null or empty");
@@ -31,8 +31,17 @@ export class SuccessPageComponent implements OnInit {
       id: "deb0a88c50653b8d0ca2905f694d5cf9"
     }
     this.http.post(url,json).subscribe((data:any)=> {
-        if(data.code == "0000")
+        if(data.code == "0000"){
+          console.log(data.response)
+          this.response.requestorId = data.response.requestorId;
+          this.response.transactionId = data.response.transactionId;
+          this.response.payerName = data.response.payerName;
+          this.response.payerEmail = data.response.payerEmail;
+          this.response.payerPhone = data.response.payerPhone;
+          this.response.totalAmount = data.response.totalAmount;
+          console.log(this.response.transactionId)
           console.log(data.description)
+        }
         else {
           this.router.navigate(['fail']);
           console.log(data.description)

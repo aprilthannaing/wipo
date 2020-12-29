@@ -1,3 +1,4 @@
+
 import {Injectable} from '@angular/core';
 import {Subject}    from 'rxjs';
 declare var CryptoJS: any;
@@ -15,7 +16,7 @@ export class RpIntercomService {
     transRef: string = "";
     merDqrCode: string = "";
     _clienturl  = "http://localhost:4200/wipo";    
-    _apiurl     = "http://localhost:8083/";
+    _apiurl     = "http://localhost:8080/payment";
     _cbpayurl   = "https://103.150.78.103:4443";
     _visaurl    = "https://cbbank.gateway.mastercard.com";
     _mpuurl     = "https://122.248.120.252:60145";

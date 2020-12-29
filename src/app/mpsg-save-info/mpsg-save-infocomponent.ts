@@ -35,6 +35,7 @@ export class MpsgSaveInfoComponent implements OnInit {
     this.http.request('get', url, {headers: headers}).subscribe(
       (data: any) => {
         this.response = data;
+        console.log(data.description)
         this.json = {
           "gatewayEntryPoint": data.transaction[0].gatewayEntryPoint,
           "amount": data.amount,

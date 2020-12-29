@@ -26,7 +26,7 @@ export class MpsgPaymentComponent implements OnInit {
     order: {
       customerNote: "MOHT Payment Fee",
       customerOrderDate: "2020-09-22",
-      description: 'MOHT Payment Fee',
+      description: "MOHT Payment Fee"
     },
     session: {
       id: this.ics.mpsgsessionid //insert your session id
@@ -35,7 +35,7 @@ export class MpsgPaymentComponent implements OnInit {
     interaction: {
       operation: "PURCHASE",
       merchant      : {
-        name   : 'WIPO',
+        name   : 'Intellectual Property Department',
         logo   : ''
       },
       locale        : 'en_US',

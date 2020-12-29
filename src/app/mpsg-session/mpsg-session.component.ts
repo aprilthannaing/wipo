@@ -71,7 +71,8 @@ export class MpsgSessionComponent implements OnInit {
   }
 
   checkUser(id){
-    const url: string =this.ics._apiurl + "/payments/check"; 
+    const url: string ="http://localhost:8080/payments/check"; 
+    // this.ics._apiurl + 
     const json = {
       "id"   : id,
       "type" : "VISA"
