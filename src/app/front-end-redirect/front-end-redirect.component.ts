@@ -36,7 +36,7 @@ export class FrontEndRedirectComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    const url: string = "http://localhost:8080/payments/ApOrNot";
+    const url: string = "http://localhost:8080/payment/payments/ApOrNot";
     const json = {
       "status"   : this.status,
       "failReason" : this.failReason

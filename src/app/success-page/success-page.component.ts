@@ -25,7 +25,7 @@ export class SuccessPageComponent implements OnInit {
   }
 
   sessionOut(){
-    const url: string = "http://localhost:8080/payments/sessionOut"; 
+    const url: string = "http://localhost:8080/payment/payments/sessionOut"; 
     const json = {
       //id : this.ics.sessionid
       id: "deb0a88c50653b8d0ca2905f694d5cf9"

@@ -13,7 +13,7 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 export class HomeComponent implements OnInit {
   id = "";
   userObj: any;
-
+  
   constructor(
     private router: Router,
     private location: Location,
@@ -24,12 +24,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      if (this.ics.sessionid == "" || this.ics.sessionid == null)
-        this.ics.sessionid = params.get('id');
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
-      this.checkUser(this.ics.sessionid);
-    })
+    
+    // this.route.paramMap.subscribe((params: ParamMap) => {
+    //   if (this.ics.sessionid == "" || this.ics.sessionid == null)
+    //     this.ics.sessionid = params.get('id');
+    //   console.log("this.ics.sessionid .....", this.ics.sessionid)
+    //   this.checkUser(this.ics.sessionid);
+    // })
 
   }
 
@@ -54,13 +55,13 @@ export class HomeComponent implements OnInit {
   }
 
   report() {
-    window.open("http://localhost:8083/report/visa.xlsx", "_blank");
+    window.open("http://localhost:8080/payment/report/visa.xlsx", "_blank");
   }
 
   checkUser(id) {
     console.log("this.ics.sessionid .....", this.ics.sessionid)
 
-    const url: string = "http://localhost:8083/payments/check";
+    const url: string = "http://localhost:8080/payment/payments/check";
     const json = {
       "id"   : id,
       "type" : ""
