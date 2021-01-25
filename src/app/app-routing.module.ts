@@ -26,11 +26,14 @@ const routes: Routes = [
   { path: 'qrcode', component: QrPaymentComponent },
   { path: 'visa', component: MpsgSessionComponent },
   { path: 'mpsg', component: MpsgPaymentComponent },
+  { path: 'mpsg/:id', component: MpsgPaymentComponent },
   { path: 'checkStatus', component: QrstatusComponent },
   { path: 'saveMaster', component: MpsgSaveInfoComponent },
+  { path: 'saveMaster/:id', component: MpsgSaveInfoComponent },
   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
   { path: 'mpsg-confirm', component: MpsgConfirmComponent },
-  { path: 'success', component: SuccessPageComponent}
+  { path: 'success', component: SuccessPageComponent},
+  { path: 'success/:id', component: SuccessPageComponent },
 ];
 
 @NgModule({

@@ -20,6 +20,7 @@ export class MPUPaymentComponent implements OnInit {
     "userDefined1": "", "userDefined2": "", "userDefined3": "",
     "hashValue": ""
   };
+  serviceCharges = "";
   totalAmount = ""; mber;currency = "";
   mpuData: any = '';
   constructor(
@@ -87,10 +88,11 @@ export class MPUPaymentComponent implements OnInit {
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000"){
-          let amount =+ data.userObj.amount1;
-          let tax =+ data.userObj.amount2;
-          let totalAmount = amount + tax;
-          let amounttemp = parseFloat(totalAmount + "00");
+          //let amount =+ data.userObj.amount1;
+          //let tax =+ data.userObj.amount2;
+          //let totalAmount = amount + tax;
+          this.serviceCharges = data.userObj.serviceCharges;
+          let amounttemp = parseFloat(data.userObj.finalAmount + "00");
           this.totalAmount = this.padFun(amounttemp,12);
           this.currency = data.userObj.currencyType;
           this.payment.invoiceNo = data.userObj.Id + "";

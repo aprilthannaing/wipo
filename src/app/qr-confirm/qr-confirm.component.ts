@@ -53,20 +53,20 @@ export class ConfirmComponent implements OnInit {
     this.resObj.transCurrency =  "MMK";
     this.resObj.ref1 = "9592353534";
     this.resObj.ref2 = "1004355346";
-    const json ={
-      reqId:this.resObj.reqId,
-      merId:this.resObj.merId,
-      subMerId:this.resObj.subMerId,
-      terminalId:this.resObj.terminalId,
-      transCurrency:this.resObj.transCurrency,
-      ref1:this.resObj.ref1,
-      ref2:this.resObj.ref2,
-    }
+    // const json ={
+    //   reqId:this.resObj.reqId,
+    //   merId:this.resObj.merId,
+    //   subMerId:this.resObj.subMerId,
+    //   terminalId:this.resObj.terminalId,
+    //   transCurrency:this.resObj.transCurrency,
+    //   ref1:this.resObj.ref1,
+    //   ref2:this.resObj.ref2,
+    // }
      const body = JSON.stringify(this.resObj);
       let headers = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+      //headers = headers.append('Content-Type', 'application/json');
       headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
-      this.http.post(url,json,{headers: headers}).subscribe((data:any)=> {
+      this.http.post(url,this.resObj,{headers: headers}).subscribe((data:any)=> {
         if(data.code == '0000'){
           this.loading_ = false;
           this.resObj.merDqrCode = data.merDqrCode;
@@ -114,9 +114,10 @@ export class ConfirmComponent implements OnInit {
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
-          this.amount1 =+ data.userObj.amount1;
-          this.amount2 =+ data.userObj.amount2;
-          this.resObj.transAmount = this.amount1 + this.amount2;
+         // this.amount1 =+ data.userObj.amount1;
+         // this.amount2 =+ data.userObj.amount2;
+          this.resObj.transAmount = data.userObj.finalAmount;
+          this.resObj.serviceCharges = data.userObj.serviceCharges;
           this.currency = data.userObj.currencyType;
       } else this.router.navigate(['fail']);
     },

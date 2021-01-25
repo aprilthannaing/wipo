@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RpIntercomService } from '../framework/rp-intercom.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,14 +16,17 @@ export class MpsgSaveInfoComponent implements OnInit {
     private router: Router,
     private location: Location,
     private ics: RpIntercomService,
+    private route: ActivatedRoute,
     private http: HttpClient,
   ) { }
 
   ngOnInit(): void {   
-    if(this.ics.sessionid == "" || this.ics.sessionid == null)  
-      console.log("Session ID is not null or empty"); 
-    else
+    this.route.params.subscribe(params => {
+      if (this.ics.sessionid == "" || this.ics.sessionid == null)
+        this.ics.sessionid =params["id"]; //params.get('id');
+      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
+    })
   }
 
   getOrderId() {
@@ -37,6 +40,7 @@ export class MpsgSaveInfoComponent implements OnInit {
         this.response = data;
         console.log(data.description)
         this.json = {
+          "sessionId": this.ics.sessionid,
           "gatewayEntryPoint": data.transaction[0].gatewayEntryPoint,
           "amount": data.amount,
           "currency": data.transaction[0].transaction.currency,
@@ -85,7 +89,8 @@ export class MpsgSaveInfoComponent implements OnInit {
     const url: string = this.ics._apiurl + "/operation/saveVisa";
     this.http.post(url,json).subscribe(
       (data: any) => {
-        console.log("response: ", data);
+        this.router.navigate(['success']);
+        console.log("Save mpsg response: ", data.messge);
       },
       error => {
         console.warn("error: ", error);
@@ -100,10 +105,12 @@ export class MpsgSaveInfoComponent implements OnInit {
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000"){
+          this.ics.orderid = data.userObj.Id;
           this.getOrderId();
-          this.router.navigate(['success']);
-        }else 
+        }else{
           this.router.navigate(['fail']);
+          console.log("Check User(MPSG SAVE)>>>>>>>>>>>>",data.Description);
+        } 
       },
       error => {  
         this.router.navigate(['fail']); 

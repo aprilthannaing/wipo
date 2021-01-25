@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { RpIntercomService } from '../framework/rp-intercom.service';
+import { formatDate } from '@angular/common';
 declare var Checkout: any;
 @Component({
   selector: 'app-mpsg-payment',
@@ -12,10 +13,13 @@ declare var Checkout: any;
 export class MpsgPaymentComponent implements OnInit {
   addScript: boolean = false;
   finalAmount : number;
+  mpsgsessionid = "";
   constructor(
     private router: Router,
     private http : HttpClient,
+    private route: ActivatedRoute,
     private ics : RpIntercomService) {
+      
     }
 
   ngOnInit(): void {
@@ -24,9 +28,9 @@ export class MpsgPaymentComponent implements OnInit {
   CheckoutConfig = {
     merchant: 'CB0000000342',
     order: {
-      customerNote: "MOHT Payment Fee",
-      customerOrderDate: "2020-09-22",
-      description: "MOHT Payment Fee"
+      customerNote: "WIPO Payment Fee",
+      customerOrderDate: formatDate(new Date(),'yyyy-MM-dd','en-US'),
+      description: "WIPO Payment Fee"
     },
     session: {
       id: this.ics.mpsgsessionid //insert your session id
@@ -68,8 +72,8 @@ export class MpsgPaymentComponent implements OnInit {
       let scripttagElement = document.createElement('script');
       scripttagElement.src = "https://cbbank.gateway.mastercard.com/checkout/version/57/checkout.js";
       scripttagElement.setAttribute('data-error', this.ics._clienturl + "?id=" + this.ics.sessionid);
-      scripttagElement.setAttribute('data-cancel', this.ics._clienturl + "?id=" + this.ics.sessionid);
-      scripttagElement.setAttribute('data-complete', this.ics._clienturl + "?id=" + this.ics.sessionid);
+      scripttagElement.setAttribute('data-complete', this.ics._clienturl + "/saveMaster?id=" + this.ics.sessionid);
+      scripttagElement.setAttribute('data-cancel',this.ics._clienturl + "?id=" + this.ics.sessionid);
       scripttagElement.setAttribute('data-timeout', this.ics._clienturl + "?id=" + this.ics.sessionid);
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);

@@ -21,9 +21,25 @@ export class AppComponent implements OnInit{
   ){}
     ngOnInit(){
       console.log(window.location.href)
-      this.urlbits = window.location.href.split("=");
-      this.sessionId = this.urlbits[this.urlbits.length-1];
-      console.log(this.sessionId)
-      this.router.navigate(['home', this.sessionId]);
+      if(window.location.href.includes("success")){
+        this.urlbits = window.location.href.split("=");
+        this.sessionId = this.urlbits[this.urlbits.length-1];
+        console.log(this.sessionId)
+        this.router.navigate(['success', this.sessionId]);
+      }else if(window.location.href.includes("saveMaster")){
+        if(window.location.href.includes("id=")){
+        this.urlbits = window.location.href.split("=");
+        this.urlbits = this.urlbits[1].split("&");
+        this.sessionId = this.urlbits[0];
+        this.router.navigate(['saveMaster', this.sessionId]);
+        console.log(this.sessionId)
+        }
+       
+      }else if(window.location.href.includes("id=")){
+        this.urlbits = window.location.href.split("=");
+        this.sessionId = this.urlbits[this.urlbits.length-1];
+        console.log(this.sessionId)
+        this.router.navigate(['home', this.sessionId]);
+      }
     }
 }

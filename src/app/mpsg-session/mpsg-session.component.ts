@@ -17,7 +17,7 @@ export class MpsgSessionComponent implements OnInit {
   amount1 :number;
   amount2 :number;
   totalAmount = "";
-  returnUrl = this.ics._clienturl//+ "/saveMaster";
+  returnUrl = this.ics._clienturl + "/saveMaster?id=" + this.ics.sessionid;
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';
   successIndicator = "";
   description = "WIPO Payment Fee";
@@ -50,7 +50,7 @@ export class MpsgSessionComponent implements OnInit {
       "apiOperation": "CREATE_CHECKOUT_SESSION",
       "interaction": {
         "operation": "PURCHASE",
-        "returnUrl": this.returnUrl
+        "returnUrl": this.returnUrl //this.ics._clienturl + "/success?id=" + this.ics.sessionid
       },
       "order": {
         "amount": this.totalAmount,
@@ -81,9 +81,9 @@ export class MpsgSessionComponent implements OnInit {
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000"){
-          this.amount1 =+ data.userObj.amount1;
-          this.amount2 =+ data.userObj.amount2;
-          this.totalAmount = this.amount1 + this.amount2 + ".00";
+          //this.amount1 =+ data.userObj.amount1;
+          //this.amount2 =+ data.userObj.amount2;
+          this.totalAmount = data.userObj.finalAmount + ".00";
           this.currency = data.userObj.currencyType;
           this.ics.orderid = data.userObj.Id + ""; 
           console.log("orderId !!!!!!!!!!!!!" , data.userObj.paymentId)

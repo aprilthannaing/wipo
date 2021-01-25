@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { RpIntercomService } from '../framework/rp-intercom.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -9,12 +10,17 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
   styleUrls: ['./mpsg-confirm.component.styl']
 })
 export class MpsgConfirmComponent implements OnInit {
-
-  constructor(
+  serviceCharges = "";
+  constructor(private http: HttpClient,
     private router: Router,
-    private ics: RpIntercomService) { }
-
-  ngOnInit(): void {
+    private route: ActivatedRoute,
+    private ics: RpIntercomService) {
+  }
+  ngOnInit(): void {   
+    if(this.ics.sessionid == "" || this.ics.sessionid == null)  
+      console.log("Session ID is not null or empty"); 
+    else
+      this.checkUser(this.ics.sessionid);
   }
 
   generate() {
@@ -23,6 +29,23 @@ export class MpsgConfirmComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['home', this.ics.sessionid]);
+  }
+
+  checkUser(id) {
+    const url: string =this.ics._apiurl  +  "/payments/check";
+    const json = {
+      "id"   : id,
+      "type" : "MPSG"
+    }
+    this.http.post(url, json).subscribe((data: any) => {
+      if (data.code == "0000") {
+          this.serviceCharges = data.userObj.serviceCharges;
+      } else this.router.navigate(['fail']);
+    },
+      error => {
+        console.warn('error', error);
+      },
+    );
   }
 
 }

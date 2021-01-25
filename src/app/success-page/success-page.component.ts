@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { RpIntercomService } from '../framework/rp-intercom.service';
 
@@ -13,22 +13,28 @@ export class SuccessPageComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private ics: RpIntercomService
+    private ics: RpIntercomService,
+    private route: ActivatedRoute,
   ) {
   }
   response = {"requestorId":"", "transactionId":"", "payerName":"", "payerPhone":"", "payerEmail":"", "totalAmount":""};
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (this.ics.sessionid == "" || this.ics.sessionid == null)
+        this.ics.sessionid =params["id"]; //params.get('id');
+        this.sessionOut();
+    })
     //if(this.ics.sessionid != "" || this.ics.sessionid != null)  
      //   console.log("Session ID is not null or empty");
     //else 
-        this.sessionOut();
+        
   }
 
   sessionOut(){
-    const url: string = "http://localhost:8080/payment/payments/sessionOut"; 
+    const url: string = this.ics._apiurl + "/payments/sessionOut"; 
     const json = {
       //id : this.ics.sessionid
-      id: "deb0a88c50653b8d0ca2905f694d5cf9"
+      id: this.ics.sessionid
     }
     this.http.post(url,json).subscribe((data:any)=> {
         if(data.code == "0000"){
@@ -38,7 +44,7 @@ export class SuccessPageComponent implements OnInit {
           this.response.payerName = data.response.payerName;
           this.response.payerEmail = data.response.payerEmail;
           this.response.payerPhone = data.response.payerPhone;
-          this.response.totalAmount = data.response.totalAmount;
+          this.response.totalAmount = data.response.finalAmount;
           console.log(this.response.transactionId)
           console.log(data.description)
         }
