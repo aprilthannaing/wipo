@@ -109,7 +109,7 @@ export class QrstatusComponent implements OnInit {
         "transStatus": obj,
         "transRef": this.request.transRef
       }
-      const url: string =this.ics._apiurl + "/operation/saveCBPaytransaction";
+      const url: string = this.ics._apiurl + "/operation/saveCBPaytransaction";
       this.http.post(url, json).subscribe(
         (data:any)=> {
          console.log("Save_____" + data);
@@ -128,7 +128,7 @@ export class QrstatusComponent implements OnInit {
       this.resObj.transExpiredTime= obj.transExpiredTime;
       this.resObj.transRef= obj.transRef;
       this.resObj.sessionId = this.ics.sessionid;
-      const url: string=this.ics._apiurl + "/operation/saveCBPaytransaction";
+      const url: string= this.ics._apiurl + "/operation/saveCBPaytransaction";
       this.http.post(url, JSON.stringify(this.resObj)).subscribe(
         (data:any)=> {
          console.log("Save_____" + data);
@@ -140,7 +140,7 @@ export class QrstatusComponent implements OnInit {
     }
 
     checkUser(id){
-      const url: string =this.ics._apiurl + "/payments/check"; 
+      const url: string = this.ics._apiurl + "/payments/check"; 
       const json = {
         "id"   : id,
         "type" : "CBPAY"

@@ -34,10 +34,8 @@ export class MPUPaymentComponent implements OnInit {
       else
         this.checkUser(this.ics.sessionid);
     }
-
   submitForm() {
-    //this.ics._mpuurl + 
-    const url: string = "/UAT/Payment/Payment/pay";
+    const url: string = this.ics._mpuurl +"/UAT/Payment/Payment/pay";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
     this.payment.amount = this.totalAmount;
@@ -47,15 +45,16 @@ export class MPUPaymentComponent implements OnInit {
     this.payment.userDefined3 = "test transaction";
     this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
     const json: any = this.payment;
-    //let headers = new HttpHeaders();
-    //headers = headers.append('Content-Type', 'application/json');
-    this.http.post(url, json, { responseType: 'text' as 'json', observe: 'response' }).subscribe(
-      data => {
+    let headers = new HttpHeaders();
+    headers = headers.append('Accept', "application/json");
+    headers = headers.append('rejectUnauthorized', "false");
+   this.http.post(url, json, {headers: headers,responseType: 'text' as 'json', observe: 'response' }).subscribe(
+    data => {
         window.location.href = data.url;
       },
       error => {
         this.router.navigate(['fail']);
-        console.warn('error', error);
+      console.warn('error', error);
       },
     );
   }
@@ -81,7 +80,7 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   checkUser(id){
-    const url: string =this.ics._apiurl + "/payments/check"; 
+    const url: string = this.ics._apiurl + "/payments/check"; 
     const json = {
       "id"   : id,
       "type" : "MPU"

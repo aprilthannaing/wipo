@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RpIntercomService } from '../framework/rp-intercom.service';
@@ -19,10 +19,9 @@ export class HomeComponent implements OnInit {
     private location: Location,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private ics: RpIntercomService
+    private ics: RpIntercomService,
   ) {
   }
-
   ngOnInit(): void {
     
     // this.route.paramMap.subscribe((params: ParamMap) => {
@@ -31,6 +30,13 @@ export class HomeComponent implements OnInit {
     //   console.log("this.ics.sessionid .....", this.ics.sessionid)
     //   this.checkUser(this.ics.sessionid);
     // })
+
+    this.route.params.subscribe(params => {
+      if (this.ics.sessionid == "" || this.ics.sessionid == null)
+        this.ics.sessionid =params["id"]; //params.get('id');
+      console.log("this.ics.sessionid .....", this.ics.sessionid)
+      this.checkUser(this.ics.sessionid);
+    })
 
   }
 
@@ -59,14 +65,14 @@ export class HomeComponent implements OnInit {
   }
 
   checkUser(id) {
-    console.log("this.ics.sessionid .....", this.ics.sessionid)
-
-    const url: string = "http://localhost:8080/payment/payments/check";
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    const url: string = this.ics._apiurl + "/payments/check";
     const json = {
       "id"   : id,
       "type" : ""
     }
-    this.http.post(url, json).subscribe((data: any) => {
+    this.http.post(url, json,{headers:headers}).subscribe((data: any) => {
       console.log("data: ", data)
       if (data.code == "0000") {
         this.userObj = data.userObj;

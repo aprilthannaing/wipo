@@ -67,6 +67,10 @@ export class MpsgPaymentComponent implements OnInit {
     return new Promise((resolve,reject)=>{
       let scripttagElement = document.createElement('script');
       scripttagElement.src = "https://cbbank.gateway.mastercard.com/checkout/version/57/checkout.js";
+      scripttagElement.setAttribute('data-error', this.ics._clienturl + "?id=" + this.ics.sessionid);
+      scripttagElement.setAttribute('data-cancel', this.ics._clienturl + "?id=" + this.ics.sessionid);
+      scripttagElement.setAttribute('data-complete', this.ics._clienturl + "?id=" + this.ics.sessionid);
+      scripttagElement.setAttribute('data-timeout', this.ics._clienturl + "?id=" + this.ics.sessionid);
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
 

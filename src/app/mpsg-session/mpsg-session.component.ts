@@ -17,7 +17,7 @@ export class MpsgSessionComponent implements OnInit {
   amount1 :number;
   amount2 :number;
   totalAmount = "";
-  returnUrl = this.ics._clienturl + "/saveMaster";
+  returnUrl = this.ics._clienturl//+ "/saveMaster";
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';
   successIndicator = "";
   description = "WIPO Payment Fee";
@@ -40,10 +40,12 @@ export class MpsgSessionComponent implements OnInit {
   generate() {
     const encodedString: any = btoa("merchant." + this.merchantId + ":" + this.apiPassword);
     const url: string = this.ics._visaurl + "/api/rest/version/57/merchant/CB0000000342/session";    
-    const headers = {
-      "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
-    }
-    
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Authorization',"Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy");
+    // const headers = {
+    //   "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
+    // }
     const json: any = {
       "apiOperation": "CREATE_CHECKOUT_SESSION",
       "interaction": {
@@ -71,7 +73,7 @@ export class MpsgSessionComponent implements OnInit {
   }
 
   checkUser(id){
-    const url: string ="http://localhost:8080/payment/payments/check"; 
+    const url: string = this.ics._apiurl + "/payments/check";
     // this.ics._apiurl + 
     const json = {
       "id"   : id,

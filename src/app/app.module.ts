@@ -25,6 +25,25 @@ import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent'
 
 import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
 import { SuccessPageComponent } from './success-page/success-page.component';
+import { ForwarderGuardComponent } from './forwarder-guard/forwarder-guard.component';
+
+// const routes: Routes = [
+//   { path: '', component: FailPageComponent },
+//   { path: 'home', component: HomeComponent },
+//   { path: 'home/:id', component: HomeComponent },
+//   { path: 'mpu-payment', component: MPUPaymentComponent },
+//   { path: 'fail', component: FailPageComponent },
+//   { path: 'confirm', component: ConfirmComponent },
+//   { path: 'confirm/:id', component : ConfirmComponent}, 
+//   { path: 'qrcode', component: QrPaymentComponent },
+//   { path: 'visa', component: MpsgSessionComponent },
+//   { path: 'mpsg', component: MpsgPaymentComponent },
+//   { path: 'checkStatus', component: QrstatusComponent },
+//   { path: 'saveMaster', component: MpsgSaveInfoComponent },
+//   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
+//   { path: 'mpsg-confirm', component: MpsgConfirmComponent },
+//   { path: 'success', component: SuccessPageComponent}
+// ];
 
 
 
@@ -74,6 +93,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    //RouterModule.forRoot(routes,{useHash: false}),
   ],
   providers: [ 
     RpIntercomService
