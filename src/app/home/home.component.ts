@@ -24,12 +24,12 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     
-    // this.route.paramMap.subscribe((params: ParamMap) => {
-    //   if (this.ics.sessionid == "" || this.ics.sessionid == null)
-    //     this.ics.sessionid = params.get('id');
-    //   console.log("this.ics.sessionid .....", this.ics.sessionid)
-    //   this.checkUser(this.ics.sessionid);
-    // })
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      if (this.ics.sessionid == "" || this.ics.sessionid == null)
+        this.ics.sessionid = params.get('id');
+      console.log("this.ics.sessionid .....", this.ics.sessionid)
+      this.checkUser(this.ics.sessionid);
+    })
 
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
