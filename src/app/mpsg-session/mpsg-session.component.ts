@@ -43,9 +43,6 @@ export class MpsgSessionComponent implements OnInit {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('Authorization',"Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy");
-    // const headers = {
-    //   "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
-    // }
     const json: any = {
       "apiOperation": "CREATE_CHECKOUT_SESSION",
       "interaction": {
