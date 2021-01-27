@@ -76,6 +76,7 @@ export class HomeComponent implements OnInit {
       console.log("data: ", data)
       if (data.code == "0000") {
         this.userObj = data.userObj;
+        this.ics.userObj = data.userObj;
       }
       else this.fail();
     },

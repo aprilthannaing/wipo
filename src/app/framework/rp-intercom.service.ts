@@ -16,24 +16,18 @@ export class RpIntercomService {
     transRef: string = "";
     merDqrCode: string = "";
     _returnurl = "";
-    // _clienturl  = "http://localhost:4200"; 
-    // _apiurl = "http://localhost:8081"
+    userObj = { "requestorId" : ""};
 
 
-    // _clienturl = "https://ipdpayment.cbbank.com.mm/payment";  
-    // _apiurl     = "https://ipdpayment.cbbank.com.mm/payment"; 
+    //_clienturl =  "https://ipdpayment.cbbank.com.mm/wipo";  
+    //_apiurl     = "https://ipdpayment.cbbank.com.mm/payment";
 
-    // _clienturl  = "http://localhost:4200/wipo"; 
-    _clienturl = "http://localhost:8082";
+    _clienturl = "http://localhost:4201/wipo";
     _apiurl = "http://localhost:8082";
 
     _cbpayurl = "https://103.150.78.103:4443";
     _visaurl = "https://cbbank.gateway.mastercard.com";
     _mpuurl = "https://122.248.120.252:60145";
 
-    //_clienturl =  "https://ipdpayment.cbbank.com.mm/wipo";  
-    //_apiurl     = "https://ipdpayment.cbbank.com.mm/payment";
-    // _cbpayurl   = "https://103.150.78.103:4443";
-    // _visaurl    = "https://cbbank.gateway.mastercard.com";
-    // _mpuurl     = "https://122.248.120.252:60145";
+
 }
