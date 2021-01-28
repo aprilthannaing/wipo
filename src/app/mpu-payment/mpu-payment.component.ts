@@ -38,17 +38,32 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   submitForm() {
-    //  const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
-    const url: string = this.ics._apiurl + "/api/mpu";
+      const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
+  //  const url: string = this.ics._apiurl + "/api/mpu";
 
+    // {
+    //   "amount": "000015000500",
+    //   "currencyCode": "104",
+    //   "hashValue": "3760E10D98EF899CD373C16595DC21FD74E98875",
+    //   "invoiceNo": "1000042",
+    //   "merchantId": "204104001305226",
+    //   "productDesc": "Wipo",
+    //   "userDefined1": "28bca62d1b5ccda3a7eb0b51bb66af37",
+    //   "userDefined2": "new switch",
+    //   "userDefined3": "test transaction"
+    //   }
+
+    this.payment.amount = "000015000500";
+    this.payment.currencyCode = "104";
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
-    this.payment.amount = this.totalAmount;
-    this.payment.currencyCode = "104";
-    this.payment.userDefined1 = this.ics.sessionid;
+    this.payment.userDefined1 = "28bca62d1b5ccda3a7eb0b51bb66af37";
     this.payment.userDefined2 = "new switch";
     this.payment.userDefined3 = "test transaction";
     this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
+
+
+    // this.payment.userDefined1 = this.ics.sessionid;
     const json: any = this.payment;
     // let headers = new HttpHeaders();
     // headers = headers.append('Accept', "application/json");
@@ -99,9 +114,7 @@ export class MPUPaymentComponent implements OnInit {
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
-        //let amount =+ data.userObj.amount1;
-        //let tax =+ data.userObj.amount2;
-        //let totalAmount = amount + tax;
+      
         this.serviceCharges = data.userObj.serviceCharges;
         let amounttemp = parseFloat(data.userObj.finalAmount + "00");
         this.totalAmount = this.padFun(amounttemp, 12);
