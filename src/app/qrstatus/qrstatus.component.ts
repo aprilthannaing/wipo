@@ -83,10 +83,11 @@ export class QrstatusComponent implements OnInit {
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
     this.resObj.terminalId = "03000001";
-    // this.resObj.transAmount = this.amount + 500;
     this.resObj.transCurrency = this.currency;
     this.resObj.ref1 = "9592353534";
     this.resObj.ref2 = "1004355346"
+    this.resObj.transAmount = this.ics.serviceFees + parseInt(this.ics.userObj.totalAmount);
+
     // let headers = new HttpHeaders();
     // headers = headers.append('Content-Type', 'application/json');
     // headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
@@ -117,7 +118,7 @@ export class QrstatusComponent implements OnInit {
     const url: string = this.ics._apiurl + "/operation/saveCBPaytransaction";
     this.http.post(url, json).subscribe(
       (data: any) => {
-        console.log("Save_____" , data);
+        console.log("Save_____", data);
       },
       error => {
         console.warn('error ', error);
@@ -136,7 +137,7 @@ export class QrstatusComponent implements OnInit {
     const url: string = this.ics._apiurl + "/operation/saveCBPaytransaction";
     this.http.post(url, JSON.stringify(this.resObj)).subscribe(
       (data: any) => {
-        console.log("Save_____" , data);
+        console.log("Save_____", data);
       },
       error => {
         console.warn('error ', error);

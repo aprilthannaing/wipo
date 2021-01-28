@@ -14,8 +14,8 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 export class MpsgSessionComponent implements OnInit {
   merchantId = "CB0000000355";
   apiPassword = "50f45faae07ac50972d8414ba0a6bb4d";
-  amount1 :number;
-  amount2 :number;
+  amount1: number;
+  amount2: number;
   totalAmount = "";
   returnUrl = this.ics._clienturl + "/saveMaster?id=" + this.ics.sessionid;
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';
@@ -30,24 +30,28 @@ export class MpsgSessionComponent implements OnInit {
     private ics: RpIntercomService) {
   }
 
-  ngOnInit(): void {   
-    if(this.ics.sessionid == "" || this.ics.sessionid == null)  
-      console.log("Session ID is not null or empty"); 
+  ngOnInit(): void {
+    if (this.ics.sessionid == "" || this.ics.sessionid == null)
+      console.log("Session ID is not null or empty");
     else
       this.checkUser(this.ics.sessionid);
   }
 
   generate() {
     const encodedString: any = btoa("merchant." + this.merchantId + ":" + this.apiPassword);
-    const url: string = this.ics._visaurl + "/api/rest/version/57/merchant/CB0000000342/session";    
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append('Authorization',"Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy");
+    // const url: string = this.ics._visaurl + "/api/rest/version/57/merchant/CB0000000342/session";    
+    const url: string = this.ics._apiurl + "/api/generatesession";
+
+    // let headers = new HttpHeaders();
+    // headers = headers.append('Access-Control-Allow-Origin', '*');
+    // headers = headers.append('Content-Type', 'application/json');
+    // headers = headers.append('Authorization', "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy");
+
     const json: any = {
       "apiOperation": "CREATE_CHECKOUT_SESSION",
       "interaction": {
         "operation": "PURCHASE",
-        "returnUrl": this.returnUrl //this.ics._clienturl + "/success?id=" + this.ics.sessionid
+        "returnUrl": this.returnUrl 
       },
       "order": {
         "amount": this.totalAmount,
@@ -56,7 +60,8 @@ export class MpsgSessionComponent implements OnInit {
         "id": this.ics.orderid
       }
     };
-    this.http.post(url,json,{headers: headers}).subscribe(
+
+    this.http.post(url, json).subscribe(
       (data: any) => {
         this.ics.mpsgsessionid = data.session.id;
         this.router.navigate(['mpsg']);
@@ -69,28 +74,28 @@ export class MpsgSessionComponent implements OnInit {
       });
   }
 
-  checkUser(id){
+  checkUser(id) {
     const url: string = this.ics._apiurl + "/payments/check";
-    // this.ics._apiurl + 
     const json = {
-      "id"   : id,
-      "type" : "VISA"
+      "id": id,
+      "type": "VISA"
     }
-    this.http.post(url,json).subscribe((data:any)=> {
-        if(data.code == "0000"){
-          //this.amount1 =+ data.userObj.amount1;
-          //this.amount2 =+ data.userObj.amount2;
-          this.totalAmount = data.userObj.finalAmount + ".00";
-          this.currency = data.userObj.currencyType;
-          this.ics.orderid = data.userObj.Id + ""; 
-          console.log("orderId !!!!!!!!!!!!!" , data.userObj.paymentId)
-          this.generate();
-        }else this.router.navigate(['fail']);
+
+    this.http.post(url, json).subscribe((data: any) => {
+      if (data.code == "0000") {
+       // this.totalAmount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
+       this.totalAmount = "1";
+        this.currency = data.userObj.currencyType;
+        this.ics.orderid = data.userObj.paymentReference + "";
+
+        console.log("orderId !!!!!!!!!!!!!", data.userObj.paymentReference)
+        this.generate();
+      } else this.router.navigate(['fail']);
+    },
+      error => {
+        console.warn('error', error);
       },
-      error => {   
-        console.warn('error' , error);             
-      }, 
-    ); 
+    );
   }
 }
 

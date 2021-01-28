@@ -45,17 +45,17 @@ export class ConfirmComponent implements OnInit {
 
   generate() {
     this.loading_ = true;
-  //  const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/generate-transaction.service";
-
+    //  const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/generate-transaction.service";
     const url: string = this.ics._apiurl + "/api/generateqr";
-
     this.resObj.reqId = this.ics.userObj.requestorId;
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
     this.resObj.terminalId = "03000001";
     this.resObj.transCurrency = "MMK";
     this.resObj.ref1 = "9592353534";
-    this.resObj.ref2 = "1004355346";  
+    this.resObj.ref2 = "1004355346";
+    this.resObj.transAmount = this.ics.serviceFees + parseInt(this.ics.userObj.totalAmount);
+    console.log("this.resObj : " , this.resObj.transAmount)
     const body = JSON.stringify(this.resObj);
     // let headers = new HttpHeaders();
     //headers = headers.append('Content-Type', 'application/json');
@@ -107,7 +107,7 @@ export class ConfirmComponent implements OnInit {
       "type": "CBPAY"
     }
     this.http.post(url, json).subscribe((data: any) => {
-      if (data.code == "0000") {    
+      if (data.code == "0000") {
         this.resObj.transAmount = data.userObj.finalAmount;
         this.resObj.serviceCharges = data.userObj.serviceCharges;
         this.currency = data.userObj.currencyType;

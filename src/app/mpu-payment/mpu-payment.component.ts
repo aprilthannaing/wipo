@@ -21,22 +21,26 @@ export class MPUPaymentComponent implements OnInit {
     "hashValue": ""
   };
   serviceCharges = "";
-  totalAmount = ""; mber;currency = "";
+  totalAmount = ""; mber; currency = "";
   mpuData: any = '';
+  html: string = '';
   constructor(
     private location: Location,
     private router: Router,
     private http: HttpClient,
     private ics: RpIntercomService) { }
 
-    ngOnInit(): void {   
-      if(this.ics.sessionid == "" || this.ics.sessionid == null)  
-        console.log("Session ID is not null or empty"); 
-      else
-        this.checkUser(this.ics.sessionid);
-    }
+  ngOnInit(): void {
+    if (this.ics.sessionid == "" || this.ics.sessionid == null)
+      console.log("Session ID is not null or empty");
+    else
+      this.checkUser(this.ics.sessionid);
+  }
+
   submitForm() {
-    const url: string = this.ics._mpuurl +"/UAT/Payment/Payment/pay";
+    //  const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
+    const url: string = this.ics._apiurl + "/api/mpu";
+
     this.payment.merchantId = "204104001305226";
     this.payment.productDesc = "Wipo";
     this.payment.amount = this.totalAmount;
@@ -46,18 +50,25 @@ export class MPUPaymentComponent implements OnInit {
     this.payment.userDefined3 = "test transaction";
     this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
     const json: any = this.payment;
-    let headers = new HttpHeaders();
-    headers = headers.append('Accept', "application/json");
-    headers = headers.append('rejectUnauthorized', "false");
-   this.http.post(url, json, {headers: headers,responseType: 'text' as 'json', observe: 'response' }).subscribe(
-    data => {
-        window.location.href = data.url;
+    // let headers = new HttpHeaders();
+    // headers = headers.append('Accept', "application/json");
+    // headers = headers.append('rejectUnauthorized', "false");
+
+    //  this.http.post(url, json, { headers: headers, responseType: 'text' as 'json', observe: 'response' }).subscribe(
+    this.http.post(url, json, { responseType: 'text' as 'json', observe: 'response' }).subscribe(
+
+      data => {
+        window.location.href = "https://122.248.120.252:60145/UAT/Payment/Payment/pay";
+
+        console.log("data!!!!!!", data)
       },
       error => {
         this.router.navigate(['fail']);
-      console.warn('error', error);
+        console.warn('error', error);
       },
     );
+
+
   }
 
   getHashValue(): string {
@@ -77,36 +88,36 @@ export class MPUPaymentComponent implements OnInit {
 
   cancel() {
     //this.location.back();
-    this.router.navigate(['home',this.ics.sessionid]);
+    this.router.navigate(['home', this.ics.sessionid]);
   }
 
-  checkUser(id){
-    const url: string = this.ics._apiurl + "/payments/check"; 
+  checkUser(id) {
+    const url: string = this.ics._apiurl + "/payments/check";
     const json = {
-      "id"   : id,
-      "type" : "MPU"
+      "id": id,
+      "type": "MPU"
     }
-    this.http.post(url,json).subscribe((data:any)=> {
-        if(data.code == "0000"){
-          //let amount =+ data.userObj.amount1;
-          //let tax =+ data.userObj.amount2;
-          //let totalAmount = amount + tax;
-          this.serviceCharges = data.userObj.serviceCharges;
-          let amounttemp = parseFloat(data.userObj.finalAmount + "00");
-          this.totalAmount = this.padFun(amounttemp,12);
-          this.currency = data.userObj.currencyType;
-          this.payment.invoiceNo = data.userObj.Id + "";
-          console.log(" this.payment.invoiceNo !!!!!!!!!!!!" ,  this.payment.invoiceNo);
-        }else this.router.navigate(['fail']);
+    this.http.post(url, json).subscribe((data: any) => {
+      if (data.code == "0000") {
+        //let amount =+ data.userObj.amount1;
+        //let tax =+ data.userObj.amount2;
+        //let totalAmount = amount + tax;
+        this.serviceCharges = data.userObj.serviceCharges;
+        let amounttemp = parseFloat(data.userObj.finalAmount + "00");
+        this.totalAmount = this.padFun(amounttemp, 12);
+        this.currency = data.userObj.currencyType;
+        this.payment.invoiceNo = data.userObj.Id + "";
+        console.log(" this.payment.invoiceNo !!!!!!!!!!!!", this.payment.invoiceNo);
+      } else this.router.navigate(['fail']);
+    },
+      error => {
+        console.warn('error', error);
       },
-      error => {   
-        console.warn('error' , error);             
-      }, 
-    ); 
+    );
   }
   //String.format("%12d", amounttemp);
-  padFun(num:number, size:number): string {
-    let s = num+"";
+  padFun(num: number, size: number): string {
+    let s = num + "";
     while (s.length < size) s = "0" + s;
     return s;
   }
