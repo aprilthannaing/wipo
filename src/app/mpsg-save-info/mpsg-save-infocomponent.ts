@@ -12,6 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class MpsgSaveInfoComponent implements OnInit {
   json: any = {};
   response: any;
+  paymentReference: string = '';
   constructor(
     private router: Router,
     private location: Location,
@@ -23,20 +24,17 @@ export class MpsgSaveInfoComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
-        this.ics.sessionid = params["id"]; //params.get('id');
+        this.ics.sessionid = params["id"]; 
       console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
   }
 
-
-
-  getOrderId() {
-    console.log(" Order ID before saving: " + this.ics.userObj.paymentReference);
+  getOrderId(orderId) {
     //const url: string = this.ics._visaurl + "/api/rest/version/57/merchant/CB0000000342/order/" +  this.ics.userObj.paymentReference;
     const url: string = this.ics._apiurl + "/api/getorder";
     const json = {
-      orderId: this.ics.userObj.paymentReference
+      orderId: orderId
     }
     // const headers =  {
     //   "Authorization": "Basic bWVyY2hhbnQuQ0IwMDAwMDAwMzQyOmEzMTAyZTEzNmJkYzhlYjdkOTg2ODA0ZGZhNTMzZTAy"
@@ -80,7 +78,6 @@ export class MpsgSaveInfoComponent implements OnInit {
         "totalCapturedAmount": data.totalRefundedAmount,
         "totalRefundedAmount": data.totalRefundedAmount
       }
-      console.log("json......", this.json);
       this.save(this.json);
     },
       error => {
@@ -90,12 +87,14 @@ export class MpsgSaveInfoComponent implements OnInit {
   }
 
   save(json: any) {
+    console.log("saving !!!!!!!!!!!!!!")
     console.log("json: ", this.json);
     const url: string = this.ics._apiurl + "/operation/saveVisa";
     this.http.post(url, json).subscribe(
       (data: any) => {
         this.router.navigate(['success']);
         console.log("Save mpsg response: ", data.messge);
+        this.ics.callBack(this.paymentReference);
       },
       error => {
         console.warn("error: ", error);
@@ -110,8 +109,9 @@ export class MpsgSaveInfoComponent implements OnInit {
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
-        this.ics.orderid = data.userObj.Id;
-        this.getOrderId();
+        console.log("data !!!!!!!!!!", data)
+        this.ics.orderid = data.userObj.paymentReference;
+        this.getOrderId(data.userObj.paymentReference);
       } else {
         this.router.navigate(['fail']);
         console.log("Check User(MPSG SAVE)>>>>>>>>>>>>", data.Description);

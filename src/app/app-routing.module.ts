@@ -15,6 +15,7 @@ import { MpsgPaymentComponent } from './mpsg-payment/mpsg-payment.component';
 import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
 import { SuccessPageComponent } from './success-page/success-page.component';
 import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 const routes: Routes = [
   { path: '', component: FailPageComponent },
@@ -34,6 +35,8 @@ const routes: Routes = [
   { path: 'mpsg-confirm', component: MpsgConfirmComponent },
   { path: 'success', component: SuccessPageComponent},
   { path: 'success/:id', component: SuccessPageComponent },
+   { path: 'cancel/:id', component: CancelComponent },
+
 ];
 
 @NgModule({

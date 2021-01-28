@@ -84,7 +84,7 @@ export class MpsgSessionComponent implements OnInit {
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
        // this.totalAmount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
-       this.totalAmount = "1";
+       this.totalAmount = "10";
         this.currency = data.userObj.currencyType;
         this.ics.orderid = data.userObj.paymentReference + "";
 

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
+    this.ics.callBack("D102020190022");
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
@@ -76,7 +77,7 @@ export class HomeComponent implements OnInit {
       console.log("data !!!!!!!!: ", data)
       if (data.code == "0000") {
         this.userObj = data.userObj;
-        this.ics.userObj = data.userObj;
+        this.ics.userObj = data.userObj;        
       }
       else this.fail();
     },
