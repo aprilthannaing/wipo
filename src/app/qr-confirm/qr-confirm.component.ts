@@ -89,7 +89,6 @@ export class ConfirmComponent implements OnInit {
     const url: string = this.ics._apiurl + "/operation/saveCBPaytransaction";
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    //headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
     this.http.post(url, JSON.stringify(this.resObj), { headers: headers }).subscribe(
       (data: any) => {
         console.log("Save___" + data);

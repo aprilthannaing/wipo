@@ -17,7 +17,7 @@ export class MpsgSessionComponent implements OnInit {
   amount1: number;
   amount2: number;
   totalAmount = "";
-  returnUrl = this.ics._clienturl + "/saveMaster?id=" + this.ics.sessionid;
+  returnUrl = this.ics._clienturl + "?saveMaster?id=" + this.ics.sessionid;
   basicAuth = 'Basic QWNWUTBIX05QTVlWMDIzSDhMM3Y2alhNcDRVdaUN2V0M4Mmo4a19hodjdkdS14M3F4dFJ6Y2pNTnRPcGN6OUpPdjU1TW9jTllsEV1p5WURWNm46RUZJRWtJd0dYdDFJSTdFRmlEdVQ3UWExV2ZXWDZnYmw3Z2w5ajgwZVlsVjI1ODdfUTRHSUxCSWxZfOGg1SzRRZTFhMZU1yVgFZGRThIWXAyRjA=';
   successIndicator = "";
   description = "WIPO Payment Fee";
@@ -87,7 +87,6 @@ export class MpsgSessionComponent implements OnInit {
        this.totalAmount = "10";
         this.currency = data.userObj.currencyType;
         this.ics.orderid = data.userObj.paymentReference + "";
-
         console.log("orderId !!!!!!!!!!!!!", data.userObj.paymentReference)
         this.generate();
       } else this.router.navigate(['fail']);

@@ -47,6 +47,8 @@ export class SuccessPageComponent implements OnInit {
           this.response.totalAmount = data.response.finalAmount;
           console.log(this.response.transactionId)
           console.log(data.description)
+          console.log("paymentReference : " , this.ics.userObj.paymentReference)
+          this.ics.callBack(this.ics.userObj.paymentReference);
         }
         else {
           this.router.navigate(['fail']);

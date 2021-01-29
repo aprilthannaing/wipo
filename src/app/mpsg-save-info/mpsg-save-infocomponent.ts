@@ -94,7 +94,7 @@ export class MpsgSaveInfoComponent implements OnInit {
       (data: any) => {
         this.router.navigate(['success']);
         console.log("Save mpsg response: ", data.messge);
-        this.ics.callBack(this.paymentReference);
+        this.ics.userObj.paymentReference = this.paymentReference;
       },
       error => {
         console.warn("error: ", error);

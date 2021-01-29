@@ -23,8 +23,6 @@ export class HomeComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-    this.ics.callBack("D102020190022");
-
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params.get('id');

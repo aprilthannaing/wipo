@@ -38,8 +38,8 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   submitForm() {
-      const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
-  //  const url: string = this.ics._apiurl + "/api/mpu";
+       const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
+   // const url: string = this.ics._apiurl + "/api/mpu";
 
     // {
     //   "amount": "000015000500",
@@ -62,7 +62,7 @@ export class MPUPaymentComponent implements OnInit {
     this.payment.userDefined3 = "test transaction";
     this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
 
-
+    console.log("payment: ", this.payment)
     // this.payment.userDefined1 = this.ics.sessionid;
     const json: any = this.payment;
     // let headers = new HttpHeaders();
@@ -73,7 +73,7 @@ export class MPUPaymentComponent implements OnInit {
     this.http.post(url, json, { responseType: 'text' as 'json', observe: 'response' }).subscribe(
 
       data => {
-        window.location.href = "https://122.248.120.252:60145/UAT/Payment/Payment/pay";
+        window.location.href = "https://www.mpuecomuat.com:60145/UAT/Payment/Payment/Pay";
 
         console.log("data!!!!!!", data)
       },
@@ -114,7 +114,7 @@ export class MPUPaymentComponent implements OnInit {
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
-      
+
         this.serviceCharges = data.userObj.serviceCharges;
         let amounttemp = parseFloat(data.userObj.finalAmount + "00");
         this.totalAmount = this.padFun(amounttemp, 12);

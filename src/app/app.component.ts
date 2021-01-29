@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     private http: HttpClient,
   ) { }
   ngOnInit() {
-    console.log(window.location.href)
+    console.log("window.location.href!!!!!!!!!!", window.location.href)
 
     if (window.location.href.includes("cancel")) {
       this.urlbits = window.location.href.split("=");
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       }
 
 
-      const url: string = "http://localhost:8082" + "/payments/paymentStatus";
+      const url: string = "https://ipdpayment.cbbank.com.mm/payment" + "/payments/paymentStatus";
       this.http.post(url, json).subscribe((data: any) => {
         console.log("data  : ", data)
       },
