@@ -1,3 +1,11 @@
+
+#divbox {
+  margin: 4% 0% 3% 0%;
+  border-radius: 20px; 
+  padding: 0% 0% 3% 0%;
+  box-shadow: 0px 0px 16px #7b7bd84f;
+}
+
 .dropbtn {
   padding: 16px;
   font-size: 16px;
@@ -258,3 +266,64 @@ img.hover-shadow {
   font-size: 30px;
   text-align: center;
 }
+
+
+
+input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="text"] {
+  padding-left: 20px;
+}
+
+input[type="text"] {
+  margin-left: 10%;
+  width: 100%;  
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 5px 0;
+  outline: none;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="password"] {
+  padding-left: 20px;
+}
+
+.inputWithIcon {
+  width: 60%;
+  margin-left: 20%;
+  position: relative;
+  border-radius: 25px;
+
+}
+
+.inputWithIcon i {
+  position: absolute;
+  right:  0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #ccc;
+  transition: 0.3s;
+}
+
+.inputWithIcon input[type="text"]:focus + i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+
+}  

@@ -13,6 +13,7 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
 export class HomeComponent implements OnInit {
   id = "";
   userObj: any;
+  choose = false;
 
   constructor(
     private router: Router,
@@ -36,6 +37,14 @@ export class HomeComponent implements OnInit {
       console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
+
+  }
+
+  choosePayment() {
+    if (this.choose)
+      this.choose = false;
+    else
+      this.choose = true;
 
   }
 
@@ -75,7 +84,7 @@ export class HomeComponent implements OnInit {
       console.log("data !!!!!!!!: ", data)
       if (data.code == "0000") {
         this.userObj = data.userObj;
-        this.ics.userObj = data.userObj;        
+        this.ics.userObj = data.userObj;
       }
       else this.fail();
     },

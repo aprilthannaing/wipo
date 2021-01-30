@@ -1,155 +1,95 @@
-
-<!--<nav class="navbar navbar-default" style="height: 120px;background-color: #1fb0fb;">
-
-    <div class="cotainer-fluid">
-        <div class="navbar-header" style="width:100%;height: 400px;">
-            <div class="row">
-                <div class="col-md-1">
-                    <img src="assets/img/images.png" width="120" height="110">
-                </div>
-                <div class="col-md-7" style="margin-top: 22px;margin-left: 35px;">
-                    <span style="font-size: x-large;font-family:sans-serif;color:lavender;">DEPARTMENT OF INTELLECTUAL
-                        PROPERTY</span>
-                    <br>
-                    <span style="font-family:cursive;color:lavender;"> MINISTRY OF COMMERCE </span>
-                </div>
-            </div>
-
-            <div style="background-color: cadetblue; height: 40px;">
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">WORKBENCH</a>
-                </div>
-
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">SUBMISSION<span class="caret" style="margin-left: 10px;"></span></a>
-                    <div class="dropdown-content">
-                        <a href="#">SUBMISSION</a>
-                        <a href="#">TRADEMARK</a>
-                        <a href="#">POST FILING</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">MY PROFILE<span style="margin-left: 10px;" class="caret"></span></a>
-                    <div class="dropdown-content">
-                        <a href="#">MY PROFILE</a>
-                        <a href="#">USER PERFERENCES</a>
-                        <a href="#">EDIT PROFILE</a>
-                        <a href="#">USER ASSOCIATION</a>
-                        <a href="#">CHANGE PASSWORD</a>
-                    </div>
-                </div>
-
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">NOTIFICATIONS</a>
-                </div>
-
-            </div>-->
-            <!-- <app-header></app-header> -->
-            <!-- <div class="grid-container1">
-                <div class="grid-item-header">
-                    <h4 style="text-align: center;">To check & pay</h4>
-                </div>
-            </div>
-            <div class="grid-container2">
-                <div class="grid-item">Requestor Id</div>
-                <div class="grid-item">{{userObj.requestorId}}</div>
-
-                <div class="grid-item">Name</div>
-                <div class="grid-item">{{userObj.payerName}}</div>
-
-                <div class="grid-item">Phone number</div>
-                <div class="grid-item">{{userObj.payerPhone}}</div>
-
-                <div class="grid-item">Email</div>
-                <div class="grid-item">{{userObj.payerEmail}}</div>
-
-                <div class="grid-item">Payment Note</div>
-                <div class="grid-item">{{userObj.paymentNote}}</div>
-
-                <div class="grid-item">Fee</div>
-                <div class="grid-item"><span style="font-weight:bold">{{userObj.totalAmount}}</span> &nbsp;{{userObj.currencyType}}</div>
-
-            </div>
-
-            <h3 style="margin-left: 133px;margin-top: 60px;">Choose payment type you want to pay</h3>
-            <div class="row" style="margin-left: 133px;margin-top: 40px;">
-                <img src="assets/img/visa.png" style="width:230px;height:160px;margin-right: 50px;" (click)="visa()"
-                    class="hover-shadow cursor">
-                <img src="assets/img/master_logo.png" style="width:230px;height:160px;margin-right: 50px;"
-                    (click)="visa()" class="hover-shadow cursor">
-                <img src="assets/img/mpu.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="payment()"
-                    class="hover-shadow cursor">
-                <img src="assets/img/cbpay.jpg" style="width:230px;height:160px;margin-right: 50px;" (click)="cbPay()"
-                    class="hover-shadow cursor">
-
-            </div>
-
-            <button style="margin-left: 570px;margin-top: 30px;" class="btn btn-primary" (click)="report()">Transaction
-                Report</button> -->
-
-        <!--</div>
-    </div>
-</nav>-->
 <app-header></app-header>
 
 <div class="container" style="margin: 0 auto;max-width: 50%;">
-        <div class="grid-container1" style="padding-top:15px;padding-bottom:15px;background-color:  rgb(239, 245, 245);">
-            <!-- background-color:  rgb(239, 245, 245); -->
-            <div class="grid-item-header">
-                <h5 style="text-align: center;font-size: medium;">To check & pay</h5>
-            </div>
-        </div>
-        <div class="grid-container2">
-            <div class="grid-item">Payee</div>
+    <div id="divbox">
+        <!-- <div class="grid-container2">
+            <div class="grid-item" style="align-content: left;"><span align="left">Payee</span></div>
             <div class="grid-item">Department of Intellectual Property (DIPM)<br>Ministry of Commerce</div>
+          </div> -->
 
-            <div class="grid-item">E-filing Reference Number</div>
-            <div class="grid-item">{{userObj.requestorId}}</div>
+        <form style="padding: 0% 15% 0% 15%;">
 
-            <div class="grid-item">User Name</div>
-            <div class="grid-item">{{userObj.payerName}}</div>
+            <img src="assets/img/cbBankLogo.png" width="20%" height="10%">
 
-            <div class="grid-item">Phone number</div>
-            <div class="grid-item">{{userObj.payerPhone}}</div>
+            <a (click)="choosePayment()"
+                style="padding:0% 0% 0% 33%;font-family:poppins;font-size: 1.3em;font-weight: 700;">Select
+                payment Type</a>
 
-            <div class="grid-item">Email</div>
-            <div class="grid-item">{{userObj.payerEmail}}</div>
 
-            <div class="grid-item">Fee</div>
-            <div class="grid-item"><span style="font-weight:bold;">{{userObj.totalAmount | currency:"MMK"}}</span></div>
-            <!-- &nbsp;{{userObj.currencyType}} -->
-            
-        </div>
-        <h4 style="text-align:center;margin-top: 60px;">Choose payment type you want to pay</h4>
-            <div class="row" style="margin-top:40px;text-align: center;">
-               
+            <div *ngIf="choose" class="row" style="padding: 5% 0% 5% 0%;">
+
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/visa.png" style="width:120px;height:120px;" (click)="visa()"
-                    class="hover-shadow cursor">
+                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/visa.png"
+                        style="width:100px;height:80px;border-radius: 10px" (click)="visa()" class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/master_logo.png" style="width:120px;height:120px;"
-                    (click)="visa()" class="hover-shadow cursor">
+                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/master_logo.png"
+                        style="width:100px;height:80px;border-radius: 10px" (click)="visa()" class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/mpu.jpg" style="width:120px;height:120px;" (click)="payment()"
-                    class="hover-shadow cursor">
+                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/mpu.jpg"
+                        style="width:100px;height:80px;border-radius: 10px" (click)="payment()" class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/cbpay.jpg" style="width:120px;height:120px;" (click)="cbPay()"
-                    class="hover-shadow cursor">
+                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/cbpay.jpg"
+                        style="width:100px;height:80px;border-radius: 10px" (click)="cbPay()" class="hover-shadow cursor">
                 </div>
-        
+
             </div>
-            <div style="margin-top: 40px;text-align: center;">
-                <img src="assets/img/cbBankLogo.png" width="170" height="100">
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">E-filing Reference Number</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" value="{{userObj.requestorId}}">
+                </div>
             </div>
-    <!-- </div> -->
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">Payment Reference Number</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                        value="{{userObj.paymentReference}}">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label" style="padding: 3%;font-family: poppins;font-size: 1.3em;">User
+                    Name</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                        value="{{userObj.payerName}}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label" style="padding: 3%;font-family: poppins;font-size: 1.3em;">Phone
+                    number</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                        value="{{userObj.payerPhone}}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">Email</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                        value="{{userObj.payerEmail}}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">Fees</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext"
+                        value="{{userObj.totalAmount | currency:'MMK'}}">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-    
-
-
-
-
-
-
