@@ -27,6 +27,7 @@ import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
 import { SuccessPageComponent } from './success-page/success-page.component';
 import { ForwarderGuardComponent } from './forwarder-guard/forwarder-guard.component';
 import { CancelComponent } from './cancel/cancel.component';
+import { NewComponent } from './new/new.component';
 
  
 
@@ -66,7 +67,8 @@ import { CancelComponent } from './cancel/cancel.component';
     MpsgConfirmComponent, 
     SuccessPageComponent,
     FrontEndRedirectComponent,
-    CancelComponent
+    CancelComponent,
+    NewComponent,
   ],
   
   imports: [ 

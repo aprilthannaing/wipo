@@ -1,0 +1,13 @@
+<form #form action='https://www.mpuecomuat.com:60145/UAT/Payment/Payment/Pay' method='post'>
+    <input type="text" id="lname" name="amount" value="000015000500"><br>
+    <input type="text" id="lname" name="currencyCode" value="104"><br>
+    <input type="text" id="lname" name="hashValue" value="C17DFC7064D8410BEE2D3BDD19270939DCBA924A"><br>
+    <input type="text" id="lname" name="invoiceNo" value="1000111"><br>
+    <input type="text" id="lname" name="merchantId" value="204104001305226"><br>
+    <input type="text" id="lname" name="productDesc" value="Wipo"><br>
+    <input type="text" id="lname" name="userDefined1" value="28bca62d1b5ccda3a7eb0b51bb66af37"><br>
+    <input type="text" id="lname" name="userDefined2" value="new switch"><br>
+    <input type="text" id="lname" name="userDefined3" value="test transaction"><br>
+    <button type="submit" class="btn btn-success" (click)="form.submit()">Submit</button>
+
+</form>

@@ -20,7 +20,7 @@ export class MPUPaymentComponent implements OnInit {
     "userDefined1": "", "userDefined2": "", "userDefined3": "",
     "hashValue": ""
   };
-  serviceCharges = "";
+  serviceCharges = 0;
   totalAmount = ""; mber; currency = "";
   mpuData: any = '';
   html: string = '';
@@ -31,6 +31,9 @@ export class MPUPaymentComponent implements OnInit {
     private ics: RpIntercomService) { }
 
   ngOnInit(): void {
+    this.serviceCharges = this.ics.serviceFees;
+
+
     if (this.ics.sessionid == "" || this.ics.sessionid == null)
       console.log("Session ID is not null or empty");
     else
@@ -38,52 +41,6 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   submitForm() {
-       const url: string = this.ics._mpuurl + "/UAT/Payment/Payment/pay";
-   // const url: string = this.ics._apiurl + "/api/mpu";
-
-    // {
-    //   "amount": "000015000500",
-    //   "currencyCode": "104",
-    //   "hashValue": "3760E10D98EF899CD373C16595DC21FD74E98875",
-    //   "invoiceNo": "1000042",
-    //   "merchantId": "204104001305226",
-    //   "productDesc": "Wipo",
-    //   "userDefined1": "28bca62d1b5ccda3a7eb0b51bb66af37",
-    //   "userDefined2": "new switch",
-    //   "userDefined3": "test transaction"
-    //   }
-
-    this.payment.amount = "000015000500";
-    this.payment.currencyCode = "104";
-    this.payment.merchantId = "204104001305226";
-    this.payment.productDesc = "Wipo";
-    this.payment.userDefined1 = "28bca62d1b5ccda3a7eb0b51bb66af37";
-    this.payment.userDefined2 = "new switch";
-    this.payment.userDefined3 = "test transaction";
-    this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
-
-    console.log("payment: ", this.payment)
-    // this.payment.userDefined1 = this.ics.sessionid;
-    const json: any = this.payment;
-    // let headers = new HttpHeaders();
-    // headers = headers.append('Accept', "application/json");
-    // headers = headers.append('rejectUnauthorized', "false");
-
-    //  this.http.post(url, json, { headers: headers, responseType: 'text' as 'json', observe: 'response' }).subscribe(
-    this.http.post(url, json, { responseType: 'text' as 'json', observe: 'response' }).subscribe(
-
-      data => {
-        window.location.href = "https://www.mpuecomuat.com:60145/UAT/Payment/Payment/Pay";
-
-        console.log("data!!!!!!", data)
-      },
-      error => {
-        this.router.navigate(['fail']);
-        console.warn('error', error);
-      },
-    );
-
-
   }
 
   getHashValue(): string {
@@ -102,7 +59,6 @@ export class MPUPaymentComponent implements OnInit {
   }
 
   cancel() {
-    //this.location.back();
     this.router.navigate(['home', this.ics.sessionid]);
   }
 
@@ -119,8 +75,22 @@ export class MPUPaymentComponent implements OnInit {
         let amounttemp = parseFloat(data.userObj.finalAmount + "00");
         this.totalAmount = this.padFun(amounttemp, 12);
         this.currency = data.userObj.currencyType;
+
+
         this.payment.invoiceNo = data.userObj.Id + "";
-        console.log(" this.payment.invoiceNo !!!!!!!!!!!!", this.payment.invoiceNo);
+        //  this.payment.amount = "0000" + (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "00";
+        //   console.log("amount !!!!!!!!!", this.payment.amount)
+
+        this.payment.amount = "000015000500";
+        this.payment.currencyCode = "104";
+        this.payment.merchantId = "204104001305226";
+        this.payment.productDesc = "Wipo";
+        this.payment.userDefined1 = this.ics.sessionid;
+        this.payment.userDefined2 = "new switch";
+        this.payment.userDefined3 = "test transaction";
+        this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
+
+        console.log("payment !!!!!!!!!!!!", this.payment);
       } else this.router.navigate(['fail']);
     },
       error => {
@@ -128,7 +98,6 @@ export class MPUPaymentComponent implements OnInit {
       },
     );
   }
-  //String.format("%12d", amounttemp);
   padFun(num: number, size: number): string {
     let s = num + "";
     while (s.length < size) s = "0" + s;

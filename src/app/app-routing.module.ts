@@ -16,6 +16,8 @@ import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redire
 import { SuccessPageComponent } from './success-page/success-page.component';
 import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
 import { CancelComponent } from './cancel/cancel.component';
+import { NewComponent } from './new/new.component';
+
 
 const routes: Routes = [
   { path: '', component: FailPageComponent },
@@ -23,7 +25,7 @@ const routes: Routes = [
   { path: 'mpu-payment', component: MPUPaymentComponent },
   { path: 'fail', component: FailPageComponent },
   { path: 'confirm', component: ConfirmComponent },
-  { path: 'confirm/:id', component : ConfirmComponent}, 
+  { path: 'confirm/:id', component: ConfirmComponent },
   { path: 'qrcode', component: QrPaymentComponent },
   { path: 'visa', component: MpsgSessionComponent },
   { path: 'mpsg', component: MpsgPaymentComponent },
@@ -33,9 +35,12 @@ const routes: Routes = [
   { path: 'saveMaster/:id', component: MpsgSaveInfoComponent },
   { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
   { path: 'mpsg-confirm', component: MpsgConfirmComponent },
-  { path: 'success', component: SuccessPageComponent},
+  { path: 'success', component: SuccessPageComponent },
   { path: 'success/:id', component: SuccessPageComponent },
-   { path: 'cancel/:id', component: CancelComponent },
+  { path: 'cancel/:id', component: CancelComponent },
+  { path: 'new', component: NewComponent },
+
+
 
 ];
 
