@@ -9,37 +9,44 @@
 
         <form style="padding: 0% 15% 0% 15%;">
 
-            <img src="assets/img/cbBankLogo.png" width="20%" height="10%">
+            <img src="assets/img/cbBankLogo.png" width="16%" height="8%">
 
             <a (click)="choosePayment()"
-                style="padding:0% 0% 0% 33%;font-family:poppins;font-size: 1.3em;font-weight: 700;">Select
+                style="padding:0% 0% 0% 38%;font-family:poppins;font-size: 1.3em;font-weight: 700;text-decoration: underline;color: white;">Select
                 payment Type</a>
+
+
 
 
             <div *ngIf="choose" class="row" style="padding: 5% 0% 5% 0%;">
 
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/visa.png"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="visa()" class="hover-shadow cursor">
+                        style="width:100px;height:80px;border-radius: 10px" (click)="visa()"
+                        class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/master_logo.png"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="visa()" class="hover-shadow cursor">
+                        style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="visa()"
+                        class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/mpu.jpg"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="payment()" class="hover-shadow cursor">
+                        style="width:100px;height:80px;border-radius: 10px" (click)="payment()"
+                        class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/cbpay.jpg"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="cbPay()" class="hover-shadow cursor">
+                        style="width:100px;height:80px;border-radius: 10px" (click)="cbPay()"
+                        class="hover-shadow cursor">
                 </div>
 
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-6 col-form-label"
-                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">E-filing Reference Number</label>
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">E-filing Reference
+                    Number</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext" value="{{userObj.requestorId}}">
                 </div>
@@ -47,7 +54,8 @@
 
             <div class="form-group row">
                 <label class="col-sm-6 col-form-label"
-                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">Payment Reference Number</label>
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">Payment Reference
+                    Number</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext" id="staticEmail"
                         value="{{userObj.paymentReference}}">
@@ -56,7 +64,8 @@
 
 
             <div class="form-group row">
-                <label class="col-sm-6 col-form-label" style="padding: 3%;font-family: poppins;font-size: 1.3em;">User
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">User
                     Name</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -65,7 +74,8 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-6 col-form-label" style="padding: 3%;font-family: poppins;font-size: 1.3em;">Phone
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">Phone
                     number</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -75,7 +85,7 @@
 
             <div class="form-group row">
                 <label class="col-sm-6 col-form-label"
-                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">Email</label>
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">Email</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext" id="staticEmail"
                         value="{{userObj.payerEmail}}">
@@ -84,7 +94,7 @@
 
             <div class="form-group row">
                 <label class="col-sm-6 col-form-label"
-                    style="padding: 3%;font-family: poppins;font-size: 1.3em;">Fees</label>
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">Fees</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext"
                         value="{{userObj.totalAmount | currency:'MMK'}}">
