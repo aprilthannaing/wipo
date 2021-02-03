@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   id = "";
   userObj: any;
   choose = false;
+  totalAmount = 0;
 
   constructor(
     private router: Router,
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
-        this.ics.sessionid = params["id"]; //params.get('id');
+        this.ics.sessionid = params["id"];
       console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
@@ -85,6 +86,7 @@ export class HomeComponent implements OnInit {
       if (data.code == "0000") {
         this.userObj = data.userObj;
         this.ics.userObj = data.userObj;
+
       }
       else this.fail();
     },
@@ -93,7 +95,6 @@ export class HomeComponent implements OnInit {
         console.warn('error', error);
       },
     );
-
   }
 }
 

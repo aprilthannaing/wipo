@@ -45,7 +45,6 @@ export class FrontEndRedirectComponent implements OnInit {
       console.log("data: ", data)
       if (data.status == "Ap") {
 
-        // this.router.navigate(['mpu/frontEndRedirect/success']);
         this.router.navigateByUrl('/success', {skipLocationChange: true});
         this.location.replaceState('/mpu/frontEndRedirect/success');
         

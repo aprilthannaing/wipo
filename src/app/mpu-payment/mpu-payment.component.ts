@@ -77,11 +77,18 @@ export class MPUPaymentComponent implements OnInit {
         this.currency = data.userObj.currencyType;
 
 
-        this.payment.invoiceNo = data.userObj.Id + "";
-        //  this.payment.amount = "0000" + (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "00";
-        //   console.log("amount !!!!!!!!!", this.payment.amount)
+        this.payment.invoiceNo = parseInt(data.userObj.Id) + 1000 + "";
+        const amount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
 
-        this.payment.amount = "000015000500";
+        var addition = "";
+        if (amount.length < 12) {
+          const toadd = 10 - amount.length;
+          for (var i = 0; i < toadd; i++) {
+            addition += "0";
+          }   
+        }
+
+        this.payment.amount = addition + amount + "00";
         this.payment.currencyCode = "104";
         this.payment.merchantId = "204104001305226";
         this.payment.productDesc = "Wipo";

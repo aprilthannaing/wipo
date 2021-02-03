@@ -22,7 +22,7 @@
 
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/visa.png"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="visa()"
+                        style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="visa()"
                         class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
@@ -32,15 +32,23 @@
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/mpu.jpg"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="payment()"
+                        style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="payment()"
                         class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/cbpay.jpg"
-                        style="width:100px;height:80px;border-radius: 10px" (click)="cbPay()"
+                        style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="cbPay()"
                         class="hover-shadow cursor">
                 </div>
 
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"
+                    style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">Payee</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" value="Department of Intellectual Property">
+                </div>
             </div>
 
             <div class="form-group row">
@@ -97,7 +105,7 @@
                     style="padding: 3%;font-family: poppins;font-size: 1.3em;color: white;">Fees</label>
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext"
-                        value="{{userObj.totalAmount | currency:'MMK'}}">
+                        value="{{userObj.finalAmount}} {{userObj.currencyType}}">
                 </div>
             </div>
         </form>

@@ -20,7 +20,7 @@ import { NewComponent } from './new/new.component';
 
 
 const routes: Routes = [
-  { path: '', component: FailPageComponent },
+  { path: '', component: FrontEndRedirectComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'mpu-payment', component: MPUPaymentComponent },
   { path: 'fail', component: FailPageComponent },
@@ -33,15 +33,12 @@ const routes: Routes = [
   { path: 'checkStatus', component: QrstatusComponent },
   { path: 'saveMaster', component: MpsgSaveInfoComponent },
   { path: 'saveMaster/:id', component: MpsgSaveInfoComponent },
-  { path: 'mpu/frontEndRedirect', component: FrontEndRedirectComponent },
+  // { path: 'frontEndRedirect', component: FrontEndRedirectComponent },
   { path: 'mpsg-confirm', component: MpsgConfirmComponent },
   { path: 'success', component: SuccessPageComponent },
   { path: 'success/:id', component: SuccessPageComponent },
   { path: 'cancel/:id', component: CancelComponent },
   { path: 'new', component: NewComponent },
-
-
-
 ];
 
 @NgModule({

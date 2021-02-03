@@ -54,16 +54,8 @@ export class QrstatusComponent implements OnInit {
     this.http.post(url, this.request).subscribe((data: any) => {
       this.transStatus = data.transStatus; // P, S, E
 
-      if (this.transStatus == "S"){
+      if (this.transStatus == "S") {
         this.router.navigate(['success']);
-
-        console.log("this.ics.sessionid !!!!!!!" , this.ics.sessionid)
-        const json = {
-          "sessionId" : this.ics.sessionid,
-          "paymentStatus" : "1",
-        }
-    
-        this.ics.setPaymentStatus(json);
       }
 
       this.showLoadingIndicator = false;
