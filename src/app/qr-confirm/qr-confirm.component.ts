@@ -43,8 +43,17 @@ export class ConfirmComponent implements OnInit {
     this.router.navigate(['home', this.ics.sessionid]);
   }
 
+  
+
   generate() {
     this.loading_ = true;
+    console.log("this.ics.sessionid !!!!!!!", this.ics.sessionid)
+    const json = {
+      "sessionId": this.ics.sessionid,
+    }
+
+    this.ics.setConfirmationDate(json);
+
     //  const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/generate-transaction.service";
     const url: string = this.ics._apiurl + "/api/generateqr";
     this.resObj.reqId = this.ics.userObj.requestorId;

@@ -51,7 +51,7 @@ export class MpsgSessionComponent implements OnInit {
       "apiOperation": "CREATE_CHECKOUT_SESSION",
       "interaction": {
         "operation": "PURCHASE",
-        "returnUrl": this.returnUrl 
+        "returnUrl": this.returnUrl
       },
       "order": {
         "amount": this.totalAmount,
@@ -83,8 +83,8 @@ export class MpsgSessionComponent implements OnInit {
 
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
-       // this.totalAmount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
-       this.totalAmount = "10";
+        this.totalAmount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
+        //this.totalAmount = "10";
         this.currency = data.userObj.currencyType;
         this.ics.orderid = data.userObj.paymentReference + "";
         console.log("orderId !!!!!!!!!!!!!", data.userObj.paymentReference)
