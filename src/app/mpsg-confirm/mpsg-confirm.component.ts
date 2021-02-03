@@ -24,6 +24,13 @@ export class MpsgConfirmComponent implements OnInit {
   }
 
   generate() {
+
+    console.log("this.ics.sessionid !!!!!!!", this.ics.sessionid)
+    const json = {
+      "sessionId": this.ics.sessionid,
+    }
+
+    this.ics.setConfirmationDate(json);
     this.router.navigate(['visa']);
   }
 

@@ -36,7 +36,9 @@ export class AppComponent implements OnInit {
       }
 
 
-      const url: string = "https://ipdpayment.cbbank.com.mm/payment" + "/payments/paymentStatus";
+      //const url: string = "https://ipdpayment.cbbank.com.mm/payment" + "/payments/paymentStatus";
+      const url: string = "http://localhost:8082" + "/payments/paymentStatus";
+
       this.http.post(url, json).subscribe((data: any) => {
         console.log("data  : ", data)
       },
