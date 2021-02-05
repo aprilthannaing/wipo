@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -33,10 +33,11 @@ export class ConfirmComponent implements OnInit {
   }
   sub: any;
   ngOnInit(): void {
-    if (this.ics.sessionid == "" || this.ics.sessionid == null)
-      console.log("Session ID is not null or empty");
-    else
+    this.route.params.subscribe(params => {
+      this.ics.sessionid = params["id"];
+      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
+    })
   }
 
   cancel() {
@@ -53,9 +54,9 @@ export class ConfirmComponent implements OnInit {
     }
 
     this.ics.setConfirmationDate(json);
-
+    const url: string = this.ics._apiurl + "/api/generateqr?sessionID=" + this.ics.sessionid ;
     //  const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/generate-transaction.service";
-    const url: string = this.ics._apiurl + "/api/generateqr";
+    //const url: string = this.ics._apiurl + "/api/generateqr";
     this.resObj.reqId = this.ics.userObj.requestorId;
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
@@ -70,18 +71,24 @@ export class ConfirmComponent implements OnInit {
     //headers = headers.append('Content-Type', 'application/json');
     //headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
     this.http.post(url, this.resObj).subscribe((data: any) => {
-      if (data.code == '0000') {
-        this.loading_ = false;
-        this.resObj.merDqrCode = data.merDqrCode;
-        this.ics.transRef = data.transRef;
-        this.ics.merDqrCode = data.merDqrCode;
-        this.router.navigate(['qrcode']);
-        this.save(data);
-      } else {
-        console.warn("fail: ", data);
+      if(data != null){
+        if (data.code == '0000') {
+          this.loading_ = false;
+          this.resObj.merDqrCode = data.merDqrCode;
+          this.ics.transRef = data.transRef;
+          this.ics.merDqrCode = data.merDqrCode;
+          this.router.navigate(['qrcode']);
+          this.save(data);
+        } else {
+          alert("Session is empty");
+        }
+      }else{
+          alert("Connection Time Out");
+          console.warn("QR Generate API Connection Time Out......" , data);
       }
     },
       error => {
+        alert("Connection Time Out");
         console.warn('error', error);
       },
     );
@@ -107,12 +114,11 @@ export class ConfirmComponent implements OnInit {
       },
     );
   }
-
   checkUser(id) {
     const url: string = this.ics._apiurl + "/payments/check";
     const json = {
       "id": id,
-      "type": "CBPAY"
+      "type": "CBPAY",
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
@@ -126,5 +132,4 @@ export class ConfirmComponent implements OnInit {
       },
     );
   }
-
 }

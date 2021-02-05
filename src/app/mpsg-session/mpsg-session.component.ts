@@ -62,13 +62,36 @@ export class MpsgSessionComponent implements OnInit {
         console.log("session version: ", data);
       },
       error => {
-        this.router.navigate(['fail']);
         console.warn("error: ", error);
+        alert("Connection Time Out");
+        this.checkUserByStatus(this.ics.sessionid);
       });
   }
 
   checkUser(id) {
     const url: string = this.ics._apiurl + "/payments/check";
+    const json = {
+      "id": id,
+      "type": "VISA"
+    }
+
+    this.http.post(url, json).subscribe((data: any) => {
+      if (data.code == "0000") {
+        this.totalAmount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
+        //this.totalAmount = "10";
+        this.currency = data.userObj.currencyType;
+        this.ics.orderid = data.userObj.paymentReference + "";
+        console.log("orderId !!!!!!!!!!!!!", data.userObj.paymentReference)
+        this.generate();
+      } else this.router.navigate(['fail']);
+    },
+      error => {
+        console.warn('error', error);
+      },
+    );
+  }
+  checkUserByStatus(id) {
+    const url: string = this.ics._apiurl + "/payments/checkUserByStatus";
     const json = {
       "id": id,
       "type": "VISA"

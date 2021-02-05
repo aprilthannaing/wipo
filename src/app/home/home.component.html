@@ -8,16 +8,13 @@
           </div> -->
 
         <form style="padding: 0% 15% 0% 15%;">
+            <div style="padding:20px 0">
+                <img src="assets/img/cbBankLogo.png" width="16%" height="8%">
 
-            <img src="assets/img/cbBankLogo.png" width="16%" height="8%">
-
-            <a (click)="choosePayment()"
-                style="padding:0% 0% 0% 38%;font-family:poppins;font-size: 1.3em;font-weight: 700;text-decoration: underline;color: white;">Select
-                payment Type</a>
-
-
-
-
+                <a (click)="choosePayment()" *ngIf="selectFlag"
+                    style="float: right; cursor: pointer; padding:0% 0% 0% 38%;font-family:poppins;font-size: 1.3em;font-weight: 700;text-decoration: underline;color: white;">Select
+                    payment Type</a>
+            </div>
             <div *ngIf="choose" class="row" style="padding: 5% 0% 5% 0%;">
 
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">

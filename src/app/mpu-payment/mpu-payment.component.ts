@@ -1,9 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RpIntercomService } from '../framework/rp-intercom.service';
 
 @Component({
@@ -28,16 +28,23 @@ export class MPUPaymentComponent implements OnInit {
     private location: Location,
     private router: Router,
     private http: HttpClient,
+    private route: ActivatedRoute,
     private ics: RpIntercomService) { }
 
   ngOnInit(): void {
     this.serviceCharges = this.ics.serviceFees;
-
-
-    if (this.ics.sessionid == "" || this.ics.sessionid == null)
-      console.log("Session ID is not null or empty");
-    else
+    this.route.params.subscribe(params => {
+      if (this.ics.sessionid == "" || this.ics.sessionid == null)
+        this.ics.sessionid = params["id"];
+      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
+    })
+
+
+    // if (this.ics.sessionid == "" || this.ics.sessionid == null)
+    //   console.log("Session ID is not null or empty");
+    // else
+    //   this.checkUser(this.ics.sessionid);
   }
 
   submitForm() {
@@ -110,4 +117,10 @@ export class MPUPaymentComponent implements OnInit {
     while (s.length < size) s = "0" + s;
     return s;
   }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log("MPU Payment Back Action...........");
+  }
 }
+

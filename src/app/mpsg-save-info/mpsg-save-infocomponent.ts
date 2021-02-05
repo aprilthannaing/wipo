@@ -15,7 +15,6 @@ export class MpsgSaveInfoComponent implements OnInit {
   paymentReference: string = '';
   constructor(
     private router: Router,
-    private location: Location,
     private ics: RpIntercomService,
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -105,7 +104,8 @@ export class MpsgSaveInfoComponent implements OnInit {
     const url: string = this.ics._apiurl + "/payments/check";
     const json = {
       "id": id,
-      "type": "VISA"
+      "type": "VISA",
+      "status": ""
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {

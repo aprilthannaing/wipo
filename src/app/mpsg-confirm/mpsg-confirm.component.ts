@@ -11,23 +11,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MpsgConfirmComponent implements OnInit {
   serviceCharges = "";
+  sessionid = "";
   constructor(private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private ics: RpIntercomService) {
   }
-  ngOnInit(): void {   
-    if(this.ics.sessionid == "" || this.ics.sessionid == null)  
-      console.log("Session ID is not null or empty"); 
-    else
-      this.checkUser(this.ics.sessionid);
+  ngOnInit(): void {  
+    this.route.params.subscribe(params => {
+      this.sessionid = params["id"];
+      this.checkUser(this.sessionid);
+    }) 
   }
 
   generate() {
-
-    console.log("this.ics.sessionid !!!!!!!", this.ics.sessionid)
     const json = {
-      "sessionId": this.ics.sessionid,
+      "sessionId": this.sessionid,
     }
 
     this.ics.setConfirmationDate(json);
@@ -35,7 +34,7 @@ export class MpsgConfirmComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['home', this.ics.sessionid]);
+    this.router.navigate(['home', this.sessionid]);
   }
 
   checkUser(id) {
