@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
-import { ActivatedRoute, Route, Router} from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { SuccessPageComponent } from '../success-page/success-page.component';
 import { filter } from 'rxjs/operators';
@@ -13,68 +13,46 @@ import { RpIntercomService } from '../framework/rp-intercom.service';
   styleUrls: ['./front-end-redirect.component.styl']
 })
 export class FrontEndRedirectComponent implements OnInit {
-    url =  "";
-    merchantID:any
-    respCode:any
-    pan:any
-    amount:any
-    invoiceNo:any
-    tranRef:any
-    approvalCode :any
-    dateTime:any
-    status:any
-    failReason:any
-    userDefined1:any
-    userDefined2:any
-    categoryCode:any
-    hashValue:any
-    userDefined3:any
+
+  merchantID = "";
+  respCode = "";
+  pan = "";
+  amount = "";
+  invoiceNo = "";
+  tranRef = "";
+  approvalCode = "";
+  dateTime = "";
+  status = "";
+  failReason = "";
+  userDefined1 = "";
+  userDefined2 = "";
+  userDefined3 = "";
+  categoryCode = "";
+  hashValue = "";
+
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private location:Location,
-    private ics:RpIntercomService
-    ) {
-      this.url = this.ics._clienturl;
-    console.log(" Calling Front End Redirect Constructor...........");
-		console.log(" merchantID " + this.merchantID);
-		console.log(" respCode " + this.respCode);
-		console.log(" pan " + this.pan);
-		console.log(" invoiceNo " + this.invoiceNo);
-		console.log(" tranRef " + this.tranRef);
-		console.log(" dateTime " + this.dateTime);
-		console.log(" status " + this.status);
-		console.log(" failReason " + this.failReason);
-		console.log(" userDefined1 " + this.userDefined1);
-		console.log(" userDefined2 " + this.userDefined2);
-		console.log(" userDefined3 " + this.userDefined3);
-		console.log(" categoryCode " + this.categoryCode);
-		console.log(" hashValue " + this.hashValue);
-		console.log(" amount " + this.amount);
-     }
-   ngOnInit(): void {
-  //   const url: string = this.ics._apiurl + "/payments/ApOrNot";
-  //   const json = {
-  //     "status"   : this.status,
-  //     "failReason" : this.failReason
-  //   }
-  //   this.http.post(url, json).subscribe((data: any) => {
-  //     console.log("data: ", data)
-  //     if (data.status == "Ap") {
 
-  //       this.router.navigateByUrl('/success', {skipLocationChange: true});
-  //       this.location.replaceState('/mpu/frontEndRedirect/success');
-        
-  //     }
-  //     else this.fail();
-  //   },
-  //     error => {
-  //       this.fail();
-  //       console.warn('error', error);
-  //     },
-  //   );
+    private location: Location,
+    private ics: RpIntercomService,
+  ) { }
+
+  ngOnInit(): void {
+    console.log("session id !!!!!!!!", this.ics.sessionid )
+    console.log("front end redirect  !!!!!!!!!!!!!!!")
+    console.log(" merchantID !!!!!!!!", this.merchantID)
+    console.log(" respCode !!!!!!!!", this.respCode)
+    console.log(" pan !!!!!!!!", this.pan)
+    console.log(" amount !!!!!!!!", this.amount)
+    console.log(" invoiceNo !!!!!!!!", this.invoiceNo)
+    console.log(" tranRef !!!!!!!!", this.tranRef)
+    console.log(" approvalCode !!!!!!!!", this.approvalCode)
+    console.log(" dateTime !!!!!!!!", this.dateTime)
+
+
   }
   // formData = new FormData();
   // onSubmit() {
@@ -103,5 +81,4 @@ export class FrontEndRedirectComponent implements OnInit {
       
   //   );
   // }
-
 }

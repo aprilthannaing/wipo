@@ -27,10 +27,10 @@ export class RpIntercomService {
         "paymentReference": ""
     };
 
-    _clienturl = "https://ipdpayment.cbbank.com.mm/wipo";
+    _clienturl = "https://ipdpayment.cbbank.com.mm/middleware";
     _apiurl = "https://ipdpayment.cbbank.com.mm/payment";
 
-    // _clienturl = "http://localhost:4200/wipo";
+    // _clienturl = "http://localhost:8080/middleware";
     // _apiurl = "http://localhost:8082";
 
     _cbpayurl = "https://103.150.78.103:4443";

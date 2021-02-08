@@ -17,28 +17,27 @@ interface DialogData {
 })
 export class AppComponent implements OnInit {
   urlbits = [];
+  urlParts = [];
   sessionId: string;
   constructor(
     private router: Router,
     private http: HttpClient,
   ) { }
   ngOnInit() {
-    console.log("window.location.href!!!!!!!!!!", window.location.href)
+    console.log("app component!!!!!!!!!!", window.location.href)
 
     if (window.location.href.includes("cancel")) {
       this.urlbits = window.location.href.split("=");
       this.sessionId = this.urlbits[this.urlbits.length - 1];
-      console.log("cancelling   !!!!!!!!!!!!!!!!!!!!!!!!!", this.sessionId)
+      console.log("cancelling from app component  !!!!!!!!!!!!!!!!!!!!!!!!!", this.sessionId)
 
       const json = {
         "sessionId": this.sessionId,
         "paymentStatus": "-1",
       }
 
-
-      const url: string = "https://ipdpayment.cbbank.com.mm/payment" + "/payments/paymentStatus";
-      //   const url: string = "http://localhost:8082" + "/payments/paymentStatus";
-
+      // const url: string = "https://ipdpayment.cbbank.com.mm/payment" + "/payments/paymentStatus";
+      const url: string = "http://localhost:8082" + "/payments/paymentStatus";
       this.http.post(url, json).subscribe((data: any) => {
         console.log("data  : ", data)
       },
@@ -50,10 +49,14 @@ export class AppComponent implements OnInit {
     }
 
     if (window.location.href.includes("success")) {
-      this.urlbits = window.location.href.split("=");
+      this.urlParts= window.location.href.split("&");
+      console.log("urlParts!!!" , this.urlParts)
+
+      this.urlbits =  this.urlParts[0].split("=");
       this.sessionId = this.urlbits[this.urlbits.length - 1];
       console.log(this.sessionId)
       this.router.navigate(['success', this.sessionId]);
+
     } else if (window.location.href.includes("saveMaster")) {
       if (window.location.href.includes("id=")) {
         this.urlbits = window.location.href.split("=");
@@ -61,13 +64,18 @@ export class AppComponent implements OnInit {
         this.sessionId = this.urlbits[0];
         this.router.navigate(['saveMaster', this.sessionId]);
         console.log(this.sessionId)
+
       }
 
     } else if (window.location.href.includes("id=")) {
-      this.urlbits = window.location.href.split("=");
+      this.urlParts= window.location.href.split("&");
+
+      console.log("urlParts!!!" , this.urlParts)
+      this.urlbits = this.urlParts[0].split("=");
       this.sessionId = this.urlbits[this.urlbits.length - 1];
       console.log(this.sessionId)
       this.router.navigate(['home', this.sessionId]);
+
     }
   }
 }

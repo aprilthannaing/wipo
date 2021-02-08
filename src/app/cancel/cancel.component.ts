@@ -37,7 +37,7 @@ export class CancelComponent implements OnInit {
   }
 
   cancelPayment() {
-    console.log("cancelling !!!!!!!!!!!" + this.ics.sessionid)
+    console.log("cancelling from cancel component !!!!!!!!!!!" + this.ics.sessionid)
     this.router.navigate(['home',this.ics.sessionid]);
     const json = {
       "sessionId" : this.ics.sessionid,

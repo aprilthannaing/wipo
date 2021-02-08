@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   userObj: any;
   choose = false;
   totalAmount = 0;
-  selectFlag = true;
   constructor(
     private router: Router,
     private location: Location,
@@ -23,7 +22,6 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private ics: RpIntercomService,
   ) {
-    this.selectFlag = true;
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -43,7 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   choosePayment() {
-    this.selectFlag = false;
     if (this.choose)
       this.choose = false;
     else
@@ -51,11 +48,11 @@ export class HomeComponent implements OnInit {
 
   }
   payment() {
-    this.router.navigate(['mpu-payment',this.ics.sessionid]);
+    this.router.navigate(['mpu-payment', this.ics.sessionid]);
   }
 
   cbPay() {
-    this.router.navigate(['confirm',this.ics.sessionid]);
+    this.router.navigate(['confirm', this.ics.sessionid]);
   }
 
   success() {
@@ -67,12 +64,8 @@ export class HomeComponent implements OnInit {
   }
 
   visa() {
-    this.router.navigate(['mpsg-confirm',this.ics.sessionid]);
+    this.router.navigate(['mpsg-confirm', this.ics.sessionid]);
   }
-
-  // report() {
-  //   window.open("http://localhost:8080/payment/report/visa.xlsx", "_blank");
-  // }
 
   checkUser(id) {
     let headers = new HttpHeaders();

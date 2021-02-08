@@ -84,7 +84,7 @@ export class MPUPaymentComponent implements OnInit {
         this.currency = data.userObj.currencyType;
 
 
-        this.payment.invoiceNo = parseInt(data.userObj.Id) + 1000 + "";
+        this.payment.invoiceNo = parseInt(data.userObj.Id) + 10000 + "";
         const amount = (parseInt(data.userObj.totalAmount) + this.ics.serviceFees) + "";
 
         var addition = "";

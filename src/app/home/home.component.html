@@ -1,39 +1,35 @@
 <app-header></app-header>
 
 <div class="container" style="margin: 0 auto;max-width: 50%;">
-    <div id="divbox">
-        <!-- <div class="grid-container2">
-            <div class="grid-item" style="align-content: left;"><span align="left">Payee</span></div>
-            <div class="grid-item">Department of Intellectual Property (DIPM)<br>Ministry of Commerce</div>
-          </div> -->
+    <div id="divbox">     
 
         <form style="padding: 0% 15% 0% 15%;">
             <div style="padding:20px 0">
                 <img src="assets/img/cbBankLogo.png" width="16%" height="8%">
 
-                <a (click)="choosePayment()" *ngIf="selectFlag"
+                <a (click)="choosePayment()"
                     style="float: right; cursor: pointer; padding:0% 0% 0% 38%;font-family:poppins;font-size: 1.3em;font-weight: 700;text-decoration: underline;color: white;">Select
                     payment Type</a>
             </div>
             <div *ngIf="choose" class="row" style="padding: 5% 0% 5% 0%;">
 
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/visa.png"
+                    <img src="assets/img/visa.png"
                         style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="visa()"
                         class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/master_logo.png"
+                    <img src="assets/img/master_logo.png"
                         style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="visa()"
                         class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/mpu.jpg"
+                    <img src="assets/img/mpu.jpg"
                         style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="payment()"
                         class="hover-shadow cursor">
                 </div>
                 <div class="col-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="https://ipdpayment.cbbank.com.mm/wipo/assets/img/cbpay.jpg"
+                    <img src="assets/img/cbpay.jpg"
                         style="width:100px;height:80px;border-radius: 10px;background-color: white;" (click)="cbPay()"
                         class="hover-shadow cursor">
                 </div>
