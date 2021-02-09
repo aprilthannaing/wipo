@@ -12,7 +12,6 @@ import { MpsgSessionComponent } from './mpsg-session/mpsg-session.component';
 import { QrstatusComponent } from './qrstatus/qrstatus.component';
 import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent';
 import { MpsgPaymentComponent } from './mpsg-payment/mpsg-payment.component';
-import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
 import { SuccessPageComponent } from './success-page/success-page.component';
 import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
 import { CancelComponent } from './cancel/cancel.component';
@@ -20,7 +19,6 @@ import { NewComponent } from './new/new.component';
 
 
 const routes: Routes = [
-  { path: '', component: FrontEndRedirectComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'mpu-payment', component: MPUPaymentComponent },
   { path: 'mpu-payment/:id', component: MPUPaymentComponent },

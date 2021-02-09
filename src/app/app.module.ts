@@ -20,7 +20,6 @@ import { MpsgPaymentComponent } from './mpsg-payment/mpsg-payment.component';
 import { QrstatusComponent } from './qrstatus/qrstatus.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
-import { FrontEndRedirectComponent } from './front-end-redirect/front-end-redirect.component';
 import { MpsgSaveInfoComponent } from './mpsg-save-info/mpsg-save-infocomponent';
 
 import { MpsgConfirmComponent } from './mpsg-confirm/mpsg-confirm.component';
@@ -63,10 +62,8 @@ import { NewComponent } from './new/new.component';
     MpsgSessionComponent, 
     QrstatusComponent, 
     MpsgSaveInfoComponent, 
-    FrontEndRedirectComponent, 
     MpsgConfirmComponent, 
     SuccessPageComponent,
-    FrontEndRedirectComponent,
     CancelComponent,
     NewComponent,
   ],
