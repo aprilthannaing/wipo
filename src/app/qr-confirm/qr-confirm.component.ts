@@ -35,7 +35,6 @@ export class ConfirmComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.ics.sessionid = params["id"];
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
   }
@@ -44,19 +43,16 @@ export class ConfirmComponent implements OnInit {
     this.router.navigate(['home', this.ics.sessionid]);
   }
 
-  
+
 
   generate() {
     this.loading_ = true;
-    console.log("this.ics.sessionid !!!!!!!", this.ics.sessionid)
     const json = {
       "sessionId": this.ics.sessionid,
     }
 
     this.ics.setConfirmationDate(json);
-    const url: string = this.ics._apiurl + "/api/generateqr?sessionID=" + this.ics.sessionid ;
-    //  const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/generate-transaction.service";
-    //const url: string = this.ics._apiurl + "/api/generateqr";
+    const url: string = this.ics._apiurl + "/api/generateqr?sessionID=" + this.ics.sessionid;
     this.resObj.reqId = this.ics.userObj.requestorId;
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
@@ -65,13 +61,9 @@ export class ConfirmComponent implements OnInit {
     this.resObj.ref1 = "9592353534";
     this.resObj.ref2 = "1004355346";
     this.resObj.transAmount = this.ics.serviceFees + parseInt(this.ics.userObj.totalAmount);
-    console.log("this.resObj : " , this.resObj.transAmount)
     const body = JSON.stringify(this.resObj);
-    // let headers = new HttpHeaders();
-    //headers = headers.append('Content-Type', 'application/json');
-    //headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
     this.http.post(url, this.resObj).subscribe((data: any) => {
-      if(data != null){
+      if (data != null) {
         if (data.code == '0000') {
           this.loading_ = false;
           this.resObj.merDqrCode = data.merDqrCode;
@@ -82,9 +74,9 @@ export class ConfirmComponent implements OnInit {
         } else {
           alert("Session is empty");
         }
-      }else{
-          alert("Connection Time Out");
-          console.warn("QR Generate API Connection Time Out......" , data);
+      } else {
+        alert("Connection Time Out");
+        console.warn("QR Generate API Connection Time Out......", data);
       }
     },
       error => {
@@ -107,7 +99,7 @@ export class ConfirmComponent implements OnInit {
     headers = headers.append('Content-Type', 'application/json');
     this.http.post(url, JSON.stringify(this.resObj), { headers: headers }).subscribe(
       (data: any) => {
-        console.log("Save___" + data);
+        console.log("Save___");
       },
       error => {
         console.warn('error___ ', error);

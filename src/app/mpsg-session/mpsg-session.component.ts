@@ -58,8 +58,6 @@ export class MpsgSessionComponent implements OnInit {
       (data: any) => {
         this.ics.mpsgsessionid = data.session.id;
         this.router.navigate(['mpsg']);
-        console.log("this.sessionId : ", this.ics.mpsgsessionid);
-        console.log("session version: ", data);
       },
       error => {
         console.warn("error: ", error);
@@ -81,7 +79,6 @@ export class MpsgSessionComponent implements OnInit {
         //this.totalAmount = "10";
         this.currency = data.userObj.currencyType;
         this.ics.orderid = data.userObj.paymentReference + "";
-        console.log("orderId !!!!!!!!!!!!!", data.userObj.paymentReference)
         this.generate();
       } else this.router.navigate(['fail']);
     },
@@ -103,7 +100,6 @@ export class MpsgSessionComponent implements OnInit {
         //this.totalAmount = "10";
         this.currency = data.userObj.currencyType;
         this.ics.orderid = data.userObj.paymentReference + "";
-        console.log("orderId !!!!!!!!!!!!!", data.userObj.paymentReference)
         this.generate();
       } else this.router.navigate(['fail']);
     },

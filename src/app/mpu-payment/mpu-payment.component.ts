@@ -36,15 +36,8 @@ export class MPUPaymentComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params["id"];
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
-
-
-    // if (this.ics.sessionid == "" || this.ics.sessionid == null)
-    //   console.log("Session ID is not null or empty");
-    // else
-    //   this.checkUser(this.ics.sessionid);
   }
 
   submitForm() {
@@ -104,7 +97,6 @@ export class MPUPaymentComponent implements OnInit {
         this.payment.userDefined3 = "test transaction";
         this.payment.hashValue = this.getHashValue().toLocaleUpperCase();
 
-        console.log("payment !!!!!!!!!!!!", this.payment);
       } else this.router.navigate(['fail']);
     },
       error => {

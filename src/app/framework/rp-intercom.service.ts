@@ -46,7 +46,6 @@ export class RpIntercomService {
     setPaymentStatus(json) {
         const url: string = this._apiurl + "/payments/paymentStatus";
         this.http.post(url, json).subscribe((data: any) => {
-            console.log("data  : ", data)
         },
             error => {
                 console.warn('error', error);
@@ -57,7 +56,6 @@ export class RpIntercomService {
     setConfirmationDate(json) {
         const url: string = this._apiurl + "/payments/confirmPayment";
         this.http.post(url, json).subscribe((data: any) => {
-            console.log("data  : ", data)
         },
             error => {
                 console.warn('error', error);
@@ -72,7 +70,6 @@ export class RpIntercomService {
         const url: string = this._apiurl + "/operation/saveVisa";
         this.http.post(url, json).subscribe(
             (data: any) => {
-                console.log("call back !!!!!!!!!!!!!!!!!", data)
             },
             error => {
                 console.warn("error: ", error);

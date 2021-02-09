@@ -21,13 +21,11 @@ export class CancelComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params.get('id');
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
     })
 
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params["id"]; 
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
     })
   }
 
@@ -37,7 +35,6 @@ export class CancelComponent implements OnInit {
   }
 
   cancelPayment() {
-    console.log("cancelling from cancel component !!!!!!!!!!!" + this.ics.sessionid)
     this.router.navigate(['home',this.ics.sessionid]);
     const json = {
       "sessionId" : this.ics.sessionid,
@@ -45,8 +42,6 @@ export class CancelComponent implements OnInit {
     }
 
     this.ics.setPaymentStatus(json);
-
-    //payment status -1 update session 
   }
 
 }

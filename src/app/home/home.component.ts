@@ -27,14 +27,12 @@ export class HomeComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params.get('id');
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
 
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params["id"];
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
 
@@ -76,7 +74,6 @@ export class HomeComponent implements OnInit {
       "type": ""
     }
     this.http.post(url, json, { headers: headers }).subscribe((data: any) => {
-      console.log("data !!!!!!!!: ", data)
       if (data.code == "0000") {
         this.userObj = data.userObj;
         this.ics.userObj = data.userObj;

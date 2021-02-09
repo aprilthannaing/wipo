@@ -24,7 +24,6 @@ export class MpsgSaveInfoComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (this.ics.sessionid == "" || this.ics.sessionid == null)
         this.ics.sessionid = params["id"]; 
-      console.log("this.ics.sessionid .....", this.ics.sessionid)
       this.checkUser(this.ics.sessionid);
     })
   }
@@ -40,7 +39,6 @@ export class MpsgSaveInfoComponent implements OnInit {
     // }
     this.http.post(url, json).subscribe((data: any) => {
       this.response = data;
-      console.log(data.description)
       this.json = {
         "sessionId": this.ics.sessionid,
         "gatewayEntryPoint": data.transaction[0].gatewayEntryPoint,
@@ -86,13 +84,10 @@ export class MpsgSaveInfoComponent implements OnInit {
   }
 
   save(json: any) {
-    console.log("saving !!!!!!!!!!!!!!")
-    console.log("json: ", this.json);
     const url: string = this.ics._apiurl + "/operation/saveVisa";
     this.http.post(url, json).subscribe(
       (data: any) => {
         this.router.navigate(['success']);
-        console.log("Save mpsg response: ", data.messge);
         this.ics.userObj.paymentReference = this.paymentReference;
       },
       error => {
@@ -109,12 +104,10 @@ export class MpsgSaveInfoComponent implements OnInit {
     }
     this.http.post(url, json).subscribe((data: any) => {
       if (data.code == "0000") {
-        console.log("data !!!!!!!!!!", data)
         this.ics.orderid = data.userObj.paymentReference;
         this.getOrderId(data.userObj.paymentReference);
       } else {
         this.router.navigate(['fail']);
-        console.log("Check User(MPSG SAVE)>>>>>>>>>>>>", data.Description);
       }
     },
       error => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { RpIntercomService } from '../framework/rp-intercom.service';
 
@@ -25,12 +25,11 @@ export class QrPaymentComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['cancel',this.ics.sessionid]);
+    this.router.navigate(['cancel', this.ics.sessionid]);
   }
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     this.cancel();
-    console.log("QR Confirm Back button Action!!!!!!");
   }
   checkStatus() {
     this.router.navigate(['checkStatus']);

@@ -42,15 +42,10 @@ export class QrstatusComponent implements OnInit {
   }
 
   checkStatus() {
-    //  const url: string = this.ics._cbpayurl + "/payment-api/v1/qr/check-transaction.service";
     const url: string = this.ics._apiurl + "/api/checkqr";
     this.request.merId = "581500000000017";
     this.request.transRef = this.ics.transRef;
-    console.log(" this.transRef: ", this.ics.transRef);
-    // let headers = new HttpHeaders();
-    // headers = headers.append('Content-Type', 'application/json');
-    // headers = headers.append('Authen-Token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTY3NzU2NzIsIm1lcklkIjoiNTgxNTAwMDAwMDAwMDE3In0.hO4-eWFQHM5STCydXlwr2SjghmFe_4GgmccBq3vJvUY");
-
+    
     this.http.post(url, this.request).subscribe((data: any) => {
       this.transStatus = data.transStatus; // P, S, E
 
@@ -72,7 +67,7 @@ export class QrstatusComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['cancel',this.ics.sessionid]);
+    this.router.navigate(['cancel', this.ics.sessionid]);
   }
 
   nextOne() {
@@ -81,10 +76,9 @@ export class QrstatusComponent implements OnInit {
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     this.cancel();
-    console.log("QR Confirm Back button Action!!!!!!");
   }
   generate() {
-    const url: string = this.ics._apiurl + "/api/generateqr?sessionID='" + this.ics.sessionid +"'";
+    const url: string = this.ics._apiurl + "/api/generateqr?sessionID='" + this.ics.sessionid + "'";
     this.resObj.reqId = this.ics.userObj.requestorId;
     this.resObj.merId = "581500000000017";
     this.resObj.subMerId = "0000000001700001";
@@ -95,20 +89,20 @@ export class QrstatusComponent implements OnInit {
     this.resObj.transAmount = this.ics.serviceFees + parseInt(this.ics.userObj.totalAmount);
     this.http.post(url, this.resObj).subscribe(
       (data: any) => {
-        if(data != null){
-        if (data.code == '0000') {
-          this.ics.transRef = data.transRef;
-          this.ics.merDqrCode = data.merDqrCode;
-          this.router.navigate(['qrcode']);
-          this.save(data);
+        if (data != null) {
+          if (data.code == '0000') {
+            this.ics.transRef = data.transRef;
+            this.ics.merDqrCode = data.merDqrCode;
+            this.router.navigate(['qrcode']);
+            this.save(data);
+          } else {
+            alert("Session is empty");
+          }
         } else {
-          alert("Session is empty");
-        }
-      }else{
           alert("Connection Time Out");
-          console.warn("QR Generate API Connection Time Out......" , data);
-      }
-    },
+          console.warn("QR Generate API Connection Time Out......", data);
+        }
+      },
       error => {
         alert("Connection Time Out");
         console.warn('error', error);
@@ -124,7 +118,7 @@ export class QrstatusComponent implements OnInit {
     const url: string = this.ics._apiurl + "/operation/saveCBPaytransaction";
     this.http.post(url, json).subscribe(
       (data: any) => {
-        console.log("Save_____", data);
+        console.log("Save_____");
       },
       error => {
         console.warn('error ', error);
@@ -143,7 +137,7 @@ export class QrstatusComponent implements OnInit {
     const url: string = this.ics._apiurl + "/operation/saveCBPaytransaction";
     this.http.post(url, JSON.stringify(this.resObj)).subscribe(
       (data: any) => {
-        console.log("Save_____", data);
+        console.log("Save_____");
       },
       error => {
         console.warn('error ', error);
@@ -157,7 +151,6 @@ export class QrstatusComponent implements OnInit {
       "type": "CBPAY",
     }
     this.http.post(url, json).subscribe((data: any) => {
-      console.log("data: ", data)
       if (data.code == "0000") {
         this.amount1 = + data.userObj.amount1;
         this.amount2 = + data.userObj.amount2;
